@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -11,798 +11,801 @@
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 </head>
 <body>
+    <!-- Full dashboard container -->
+    <div class="dashboard-container">
 
-    <!-- SIDEBAR -->
-    <div class="sidebar">
-        <div class="logo">Smart<span>Home</span></div>
-        <ul class="nav-links">
-            <li class="active" data-page="dashboard"><i class="fa-solid fa-house"></i> Dashboard</li>
-            <li data-page="rooms"><i class="fa-solid fa-bed"></i> Rooms</li>
-            <li data-page="lighting"><i class="fa-solid fa-lightbulb"></i> Lighting Control</li>
-            <li data-page="ventilation"><i class="fa-solid fa-fan"></i> Ventilation Control</li>
-            <li data-page="aircon"><i class="fa-solid fa-snowflake"></i> Aircon Control</li>
-            <li data-page="sensor"><i class="fa-solid fa-wave-square"></i> Sensor Monitoring</li>
-            <li data-page="water"><i class="fa-solid fa-water"></i> Water Systems</li>
-            <li data-page="energy"><i class="fa-solid fa-bolt"></i> Energy and Power</li>
-            <li data-page="settings"><i class="fa-solid fa-gear"></i> Settings</li>
-        </ul>
-    </div>
+        <!-- SIDEBAR -->
+        <div class="sidebar">
+            <div class="logo">Smart<span>Home</span></div>
+            <ul class="nav-links">
+                <li class="active" data-page="dashboard"><i class="fa-solid fa-house"></i> Dashboard</li>
+                <li data-page="rooms"><i class="fa-solid fa-bed"></i> Rooms</li>
+                <li data-page="lighting"><i class="fa-solid fa-lightbulb"></i> Lighting Control</li>
+                <li data-page="ventilation"><i class="fa-solid fa-fan"></i> Ventilation Control</li>
+                <li data-page="aircon"><i class="fa-solid fa-snowflake"></i> Aircon Control</li>
+                <li data-page="sensor"><i class="fa-solid fa-wave-square"></i> Sensor Monitoring</li>
+                <li data-page="water"><i class="fa-solid fa-water"></i> Water Systems</li>
+                <li data-page="energy"><i class="fa-solid fa-bolt"></i> Energy and Power</li>
+                <li data-page="settings"><i class="fa-solid fa-gear"></i> Settings</li>
+            </ul>
+        </div>
 
-    <!-- MAIN CONTENT -->
-    <div class="main-content">
+        <!-- MAIN CONTENT -->
+        <div class="main-content">
 
-        <!-- ROOM CONTROL MODAL -->
-        <div id="roomModal" class="modal">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <h2 id="roomTitle">Room Control</h2>
+            <!-- ROOM CONTROL MODAL -->
+            <div id="roomModal" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <h2 id="roomTitle">Room Control</h2>
 
-                <div class="control-section" data-page="rooms">
-                    <h3>Light Control</h3>
-                    <label class="switch">
-                        <input type="checkbox" id="lightToggle">
-                        <span class="slider"></span>
+                    <div class="control-section" data-page="rooms">
+                        <h3>Light Control</h3>
+                        <label class="switch">
+                            <input type="checkbox" id="lightToggle">
+                            <span class="slider"></span>
+                        </label>
+                        <p>Brightness</p>
+                        <input type="range" min="0" max="100" value="60" id="brightnessSlider">
+                    </div>
+
+                    <div class="control-section">
+                        <h3>Temperature Control</h3>
+                        <p>Current Temperature: <span id="currentTemp">21°C</span></p>
+                        <select id="tempSelect">
+                            <option>20°C</option>
+                            <option>21°C</option>
+                            <option>22°C</option>
+                            <option>23°C</option>
+                            <option>24°C</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TOP NAVBAR -->
+            <div class="topbar">
+                <div class="menu-search">
+                    <div class="menu-icon"><i class="fa-solid fa-bars"></i></div>
+                    <div class="search">
+                        <input type="text" placeholder="Search devices or rooms">
+                        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                    </div>
+                </div>
+
+                <div class="top-icons">
+                    <input type="checkbox" id="switch-mode" hidden />
+                    <label class="switch-lm" for="switch-mode">
+                        <i class="bx bxs-moon"></i>
+                        <i class="bx bx-sun"></i>
+                        <div class="ball"></div>
                     </label>
-                    <p>Brightness</p>
-                    <input type="range" min="0" max="100" value="60" id="brightnessSlider">
-                </div>
 
-                <div class="control-section">
-                    <h3>Temperature Control</h3>
-                    <p>Current Temperature: <span id="currentTemp">21°C</span></p>
-                    <select id="tempSelect">
-                        <option>20°C</option>
-                        <option>21°C</option>
-                        <option>22°C</option>
-                        <option>23°C</option>
-                        <option>24°C</option>
-                    </select>
+                    <div class="notification-wrapper">
+                        <a href="#" class="notification" id="notificationIcon">
+                            <i class="fa-solid fa-bell"></i>
+                            <span class="num">8</span>
+                        </a>
+                        <div class="notification-menu" id="notificationMenu">
+                            <ul>
+                                <li>New message from John</li>
+                                <li>Your order has been shipped</li>
+                                <li>New comment on your post</li>
+                                <li>Update available for your app</li>
+                                <li>Reminder: Meeting at 3PM</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="profile-wrapper">
+                        <a href="#" class="profile" id="profileIcon">
+                            <img src="https://placehold.co/40x40/png" alt="Profile">
+                        </a>
+                        <div class="profile-menu" id="profileMenu">
+                            <ul>
+                                <li><a href="#">My Profile</a></li>
+                                <li><a href="#">Settings</a></li>
+                                <li><a href="#">Log Out</a></li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <!-- TOP NAVBAR -->
-        <div class="topbar">
-            <div class="menu-search">
-                <div class="menu-icon"><i class="fa-solid fa-bars"></i></div>
-                <div class="search">
-                    <input type="text" placeholder="Search devices or rooms">
-                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            <!-- DASHBOARD SECTIONS -->
+            <div id="dashboard">
+                <div class="welcome">
+                    <h1>Welcome, Chris!</h1>
+                    <p>Smart home system status overview</p>
                 </div>
-            </div>
 
-            <div class="top-icons">
-                <input type="checkbox" id="switch-mode" hidden />
-                <label class="switch-lm" for="switch-mode">
-                    <i class="bx bxs-moon"></i>
-                    <i class="bx bx-sun"></i>
-                    <div class="ball"></div>
-                </label>
+                <div class="status-grid">
+                    <div class="status-card">
+                        <i class="fa-solid fa-lightbulb"></i><h3>Lights On</h3>
+                        <p>5 / 12 Active</p>
+                        <button class="toggle">ON</button>
+                    </div>
+                    <div class="status-card">
+                        <i class="fa-solid fa-fan"></i>
+                        <h3>Fan</h3>
+                        <p>2 Running</p>
+                        <button class="toggle">ON</button>
+                    </div>
+                    <div class="status-card">
+                        <i class="fa-solid fa-snowflake"></i>
+                        <h3>Aircon</h3>
+                        <p>1.8 kWh</p>
+                        <button class="toggle">ON</button>
+                    </div>
+                    <div class="status-card">
+                        <i class="fa-solid fa-bolt"></i>
+                        <h3>Energy Consumption</h3>
+                        <p>1.8 kWh Today</p>
+                        <button class="toggle">VIEW</button>
+                    </div>
+                </div>
 
-                <div class="notification-wrapper">
-                    <a href="#" class="notification" id="notificationIcon">
-                        <i class="fa-solid fa-bell"></i>
-                        <span class="num">8</span>
-                    </a>
-                    <div class="notification-menu" id="notificationMenu">
+                <div class="section-title"><h2>Zones Overview</h2></div>
+                <div class="rooms-grid">
+                    <div class="room-card"><h3>Living Room</h3><p>Light: ON</p><p>Temp: 21°C</p></div>
+                    <div class="room-card"><h3>Bedroom 1</h3><p>Light: OFF</p><p>Temp: 23°C</p></div>
+                    <div class="room-card"><h3>Bedroom 2</h3><p>Light: OFF</p><p>Temp: 25°C</p></div>
+                    <div class="room-card"><h3>Kitchen</h3><p>Sensor Active</p><p>Exhaust: OFF</p></div>
+                    <div class="room-card"><h3>Garage</h3><p>Door Closed</p></div>
+                    <div class="room-card"><h3>Outdoor</h3><p>Garden Light ON</p></div>
+                </div>
+
+                <div class="bottom-grid">
+                    <div class="energy-panel">
+                        <h3>Energy Usage</h3>
+                        <p class="energy-today">Today's Consumption: <strong>1.8 kWh</strong></p>
+                        <div class="energy-graph"><canvas id="energyChart"></canvas></div>
+                        <div class="energy-info"><p>Monthly Totals</p><p>Appliance Breakdown</p></div>
+                    </div>
+
+                    <div class="settings-panel">
+                        <h3>Settings</h3>
                         <ul>
-                            <li>New message from John</li>
-                            <li>Your order has been shipped</li>
-                            <li>New comment on your post</li>
-                            <li>Update available for your app</li>
-                            <li>Reminder: Meeting at 3PM</li>
+                            <li>User Profile Settings</li>
+                            <li>Device Pairing</li>
+                            <li>Automation Rules</li>
+                            <li>Test</li>
+                            <li>Theme: Light / Dark</li>
                         </ul>
                     </div>
                 </div>
-
-                <div class="profile-wrapper">
-                    <a href="#" class="profile" id="profileIcon">
-                        <img src="https://placehold.co/40x40/png" alt="Profile">
-                    </a>
-                    <div class="profile-menu" id="profileMenu">
-                        <ul>
-                            <li><a href="#">My Profile</a></li>
-                            <li><a href="#">Settings</a></li>
-                            <li><a href="#">Log Out</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- DASHBOARD SECTIONS -->
-        <div id="dashboard">
-            <div class="welcome">
-                <h1>Welcome Home, Christaline!</h1>
-                <p>Smart home system status overview</p>
             </div>
 
-            <div class="status-grid">
-                <div class="status-card">
-                    <i class="fa-solid fa-lightbulb"></i><h3>Lights On</h3>
-                    <p>5 / 12 Active</p>
-                    <button class="toggle">ON</button>
-                </div>
-                <div class="status-card">
-                    <i class="fa-solid fa-fan"></i>
-                    <h3>Fan</h3>
-                    <p>2 Running</p>
-                    <button class="toggle">ON</button>
-                </div>
-                <div class="status-card">
-                    <i class="fa-solid fa-snowflake"></i>
-                    <h3>Aircon</h3>
-                    <p>1.8 kWh</p>
-                    <button class="toggle">ON</button>
-                </div>
-                <div class="status-card">
-                    <i class="fa-solid fa-bolt"></i>
-                    <h3>Energy Consumption</h3>
-                    <p>1.8 kWh Today</p>
-                    <button class="toggle">VIEW</button>
-                </div>
-            </div>
+            <!-- ROOMS PAGE -->
+            <div class="page" id="rooms" style="display: none;">
+                <h2 class="page-title">Room Controls</h2>
 
-            <div class="section-title"><h2>Zones Overview</h2></div>
-            <div class="rooms-grid">
-                <div class="room-card"><h3>Living Room</h3><p>Light: ON</p><p>Temp: 21°C</p></div>
-                <div class="room-card"><h3>Bedroom 1</h3><p>Light: OFF</p><p>Temp: 23°C</p></div>
-                <div class="room-card"><h3>Bedroom 2</h3><p>Light: OFF</p><p>Temp: 25°C</p></div>
-                <div class="room-card"><h3>Kitchen</h3><p>Sensor Active</p><p>Exhaust: OFF</p></div>
-                <div class="room-card"><h3>Garage</h3><p>Door Closed</p></div>
-                <div class="room-card"><h3>Outdoor</h3><p>Garden Light ON</p></div>
-            </div>
-
-            <div class="bottom-grid">
-                <div class="energy-panel">
-                    <h3>Energy Usage</h3>
-                    <p class="energy-today">Today's Consumption: <strong>1.8 kWh</strong></p>
-                    <div class="energy-graph"><canvas id="energyChart"></canvas></div>
-                    <div class="energy-info"><p>Monthly Totals</p><p>Appliance Breakdown</p></div>
+                <!-- Room Tabs -->
+                <div class="room-tabs">
+                    <div class="room-tab active" data-room="living-room">Living Room</div>
+                    <div class="room-tab" data-room="bedroom1">Bedroom 1</div>
+                    <div class="room-tab" data-room="bedroom2">Bedroom 2</div>
+                    <div class="room-tab" data-room="kitchen">Kitchen</div>
+                    <div class="room-tab" data-room="bathroom">Bathroom</div>
+                    <div class="room-tab" data-room="garage">Garage</div>
+                    <div class="room-tab" data-room="balcony">Balcony</div>
                 </div>
 
-                <div class="settings-panel">
-                    <h3>Settings</h3>
-                    <ul>
-                        <li>User Profile Settings</li>
-                        <li>Device Pairing</li>
-                        <li>Automation Rules</li>
-                        <li>Test</li>
-                        <li>Theme: Light / Dark</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <!-- ROOMS PAGE -->
-        <div class="page" id="rooms" style="display: none;">
-            <h2 class="page-title">Room Controls</h2>
-
-            <!-- Room Tabs -->
-            <div class="room-tabs">
-                <div class="room-tab active" data-room="living-room">Living Room</div>
-                <div class="room-tab" data-room="bedroom1">Bedroom 1</div>
-                <div class="room-tab" data-room="bedroom2">Bedroom 2</div>
-                <div class="room-tab" data-room="kitchen">Kitchen</div>
-                <div class="room-tab" data-room="bathroom">Bathroom</div>
-                <div class="room-tab" data-room="garage">Garage</div>
-                <div class="room-tab" data-room="balcony">Balcony</div>
-            </div>
-
-            <!-- Room Controls Container -->
-            <div class="room-controls-container">
-                <!-- Living Room Controls -->
-                <div class="room-controls" id="living-room" style="display: block;">
-                    <div class="device-row">
-                        <div class="device-item">
-                            <div class="device-circle" data-device-type="light" data-device-id="living-light-1">
-                                <i class="fas fa-lightbulb device-icon"></i>
-                            </div>
-                            <p class="device-label">Main Light</p>
-                        </div>
-                        <div class="device-item">
-                            <div class="device-circle fan-control" data-device-type="fan" data-device-id="living-fan-1" data-current-speed="0">
-                                <i class="fas fa-fan device-icon fan-icon"></i>
-                                <div class="fan-speed-indicator">
-                                    <span class="speed-dot" data-speed="1"></span>
-                                    <span class="speed-dot" data-speed="2"></span>
-                                    <span class="speed-dot" data-speed="3"></span>
-                                    <span class="speed-dot" data-speed="4"></span>
-                                    <span class="speed-dot" data-speed="5"></span>
+                <!-- Room Controls Container -->
+                <div class="room-controls-container">
+                    <!-- Living Room Controls -->
+                    <div class="room-controls" id="living-room" style="display: block;">
+                        <div class="device-row">
+                            <div class="device-item">
+                                <div class="device-circle" data-device-type="light" data-device-id="living-light-1">
+                                    <i class="fas fa-lightbulb device-icon"></i>
                                 </div>
+                                <p class="device-label">Main Light</p>
                             </div>
-                            <p class="device-label">Ceiling Fan</p>
-                        </div>
-                        <div class="device-item">
-                            <div class="device-circle" data-device-type="other" data-device-id="living-tv-1">
-                                <i class="fas fa-tv device-icon"></i>
-                            </div>
-                            <p class="device-label">Smart TV</p>
-                        </div>
-                        <div class="device-item">
-                            <div class="device-circle" data-device-type="socket" data-device-id="living-socket-1">
-                                <i class="fas fa-plug device-icon"></i>
-                            </div>
-                            <p class="device-label">Socket 1</p>
-                        </div>
-                        <div class="device-item">
-                            <div class="device-circle" data-device-type="light" data-device-id="living-light-2">
-                                <i class="fas fa-lightbulb device-icon"></i>
-                            </div>
-                            <p class="device-label">Desk Lamp</p>
-                        </div>
-                        <div class="device-item">
-                            <div class="device-circle" data-device-type="other" data-device-id="living-ac-1">
-                                <i class="fas fa-snowflake device-icon"></i>
-                            </div>
-                            <p class="device-label">A/C</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Bedroom 1 Controls -->
-                <div class="room-controls" id="bedroom1" style="display: none;">
-                    <div class="device-row">
-                        <div class="device-item">
-                            <div class="device-circle" data-device-type="light" data-device-id="bedroom1-light-1">
-                                <i class="fas fa-lightbulb device-icon"></i>
-                            </div>
-                            <p class="device-label">Bedroom Light</p>
-                        </div>
-                        <div class="device-item">
-                            <div class="device-circle fan-control" data-device-type="fan" data-device-id="bedroom1-fan-1" data-current-speed="0">
-                                <i class="fas fa-fan device-icon fan-icon"></i>
-                                <div class="fan-speed-indicator">
-                                    <span class="speed-dot" data-speed="1"></span>
-                                    <span class="speed-dot" data-speed="2"></span>
-                                    <span class="speed-dot" data-speed="3"></span>
-                                    <span class="speed-dot" data-speed="4"></span>
-                                    <span class="speed-dot" data-speed="5"></span>
+                            <div class="device-item">
+                                <div class="device-circle fan-control" data-device-type="fan" data-device-id="living-fan-1" data-current-speed="0">
+                                    <i class="fas fa-fan device-icon fan-icon"></i>
+                                    <div class="fan-speed-indicator">
+                                        <span class="speed-dot" data-speed="1"></span>
+                                        <span class="speed-dot" data-speed="2"></span>
+                                        <span class="speed-dot" data-speed="3"></span>
+                                        <span class="speed-dot" data-speed="4"></span>
+                                        <span class="speed-dot" data-speed="5"></span>
+                                    </div>
                                 </div>
+                                <p class="device-label">Ceiling Fan</p>
                             </div>
-                            <p class="device-label">Ceiling Fan</p>
-                        </div>
-                        <div class="device-item">
-                            <div class="device-circle" data-device-type="other" data-device-id="bedroom1-tv-1">
-                                <i class="fas fa-tv device-icon"></i>
-                            </div>
-                            <p class="device-label">Smart TV</p>
-                        </div>
-                        <div class="device-item">
-                            <div class="device-circle" data-device-type="other" data-device-id="bedroom1-lamp-1">
-                                <i class="far fa-lightbulb device-icon"></i>
-                            </div>
-                            <p class="device-label">Lamp</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Bedroom 2 Controls -->
-                <div class="room-controls" id="bedroom2" style="display: none;">
-                    <div class="device-row">
-                        <div class="device-item">
-                            <div class="device-circle" data-device-type="light" data-device-id="bedroom2-light-1">
-                                <i class="fas fa-lightbulb device-icon"></i>
-                            </div>
-                            <p class="device-label">Bedroom Light</p>
-                        </div>
-                        <div class="device-item">
-                            <div class="device-circle fan-control" data-device-type="fan" data-device-id="bedroom2-fan-1" data-current-speed="0">
-                                <i class="fas fa-fan device-icon fan-icon"></i>
-                                <div class="fan-speed-indicator">
-                                    <span class="speed-dot" data-speed="1"></span>
-                                    <span class="speed-dot" data-speed="2"></span>
-                                    <span class="speed-dot" data-speed="3"></span>
-                                    <span class="speed-dot" data-speed="4"></span>
-                                    <span class="speed-dot" data-speed="5"></span>
+                            <div class="device-item">
+                                <div class="device-circle" data-device-type="other" data-device-id="living-tv-1">
+                                    <i class="fas fa-tv device-icon"></i>
                                 </div>
+                                <p class="device-label">Smart TV</p>
                             </div>
-                            <p class="device-label">Ceiling Fan</p>
-                        </div>
-                        <div class="device-item">
-                            <div class="device-circle" data-device-type="other" data-device-id="bedroom2-tv-1">
-                                <i class="fas fa-tv device-icon"></i>
-                            </div>
-                            <p class="device-label">Smart TV</p>
-                        </div>
-                        <div class="device-item">
-                            <div class="device-circle" data-device-type="other" data-device-id="bedroom2-speakers-1">
-                                <i class="fas fa-volume-down device-icon"></i>
-                            </div>
-                            <p class="device-label">Speakers</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Kitchen Controls -->
-                <div class="room-controls" id="kitchen" style="display: none;">
-                    <div class="device-row">
-                        <div class="device-item">
-                            <div class="device-circle" data-device-type="light" data-device-id="kitchen-light-1">
-                                <i class="fas fa-lightbulb device-icon"></i>
-                            </div>
-                            <p class="device-label">Kitchen Light</p>
-                        </div>
-                        <div class="device-item">
-                            <div class="device-circle fan-control" data-device-type="fan" data-device-id="kitchen-fan-1" data-current-speed="0">
-                                <i class="fas fa-fan device-icon fan-icon"></i>
-                                <div class="fan-speed-indicator">
-                                    <span class="speed-dot" data-speed="1"></span>
-                                    <span class="speed-dot" data-speed="2"></span>
-                                    <span class="speed-dot" data-speed="3"></span>
-                                    <span class="speed-dot" data-speed="4"></span>
-                                    <span class="speed-dot" data-speed="5"></span>
+                            <div class="device-item">
+                                <div class="device-circle" data-device-type="socket" data-device-id="living-socket-1">
+                                    <i class="fas fa-plug device-icon"></i>
                                 </div>
+                                <p class="device-label">Socket 1</p>
                             </div>
-                            <p class="device-label">Ceiling Fan</p>
-                        </div>
-                        <div class="device-item">
-                            <div class="device-circle" data-device-type="other" data-device-id="kitchen-tv-1">
-                                <i class="fas fa-tv device-icon"></i>
-                            </div>
-                            <p class="device-label">Smart TV</p>
-                        </div>
-                        <div class="device-item">
-                            <div class="device-circle" data-device-type="other" data-device-id="kitchen-coffee-1">
-                                <i class="fas fa-coffee device-icon"></i>
-                            </div>
-                            <p class="device-label">Coffee Maker</p>
-                        </div>
-                        <div class="device-item">
-                            <div class="device-circle" data-device-type="other" data-device-id="kitchen-blender-1">
-                                <i class="fas fa-blender device-icon"></i>
-                            </div>
-                            <p class="device-label">Blender</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Bathroom Controls -->
-                <div class="room-controls" id="bathroom" style="display: none;">
-                    <div class="device-row">
-                        <div class="device-item">
-                            <div class="device-circle" data-device-type="light" data-device-id="bathroom-light-1">
-                                <i class="fas fa-lightbulb device-icon"></i>
-                            </div>
-                            <p class="device-label">Bathroom Light</p>
-                        </div>
-                        <div class="device-item">
-                            <div class="device-circle fan-control" data-device-type="fan" data-device-id="bathroom-fan-1" data-current-speed="0">
-                                <i class="fas fa-fan device-icon fan-icon"></i>
-                                <div class="fan-speed-indicator">
-                                    <span class="speed-dot" data-speed="1"></span>
-                                    <span class="speed-dot" data-speed="2"></span>
-                                    <span class="speed-dot" data-speed="3"></span>
-                                    <span class="speed-dot" data-speed="4"></span>
-                                    <span class="speed-dot" data-speed="5"></span>
+                            <div class="device-item">
+                                <div class="device-circle" data-device-type="light" data-device-id="living-light-2">
+                                    <i class="fas fa-lightbulb device-icon"></i>
                                 </div>
+                                <p class="device-label">Desk Lamp</p>
                             </div>
-                            <p class="device-label">Exhaust Fan</p>
+                            <div class="device-item">
+                                <div class="device-circle" data-device-type="other" data-device-id="living-ac-1">
+                                    <i class="fas fa-snowflake device-icon"></i>
+                                </div>
+                                <p class="device-label">A/C</p>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Garage Controls -->
-                <div class="room-controls" id="garage" style="display: none;">
-                    <div class="device-row">
-                        <div class="device-item">
-                            <div class="device-circle" data-device-type="light" data-device-id="garage-light-1">
-                                <i class="fas fa-lightbulb device-icon"></i>
+                    <!-- Bedroom 1 Controls -->
+                    <div class="room-controls" id="bedroom1" style="display: none;">
+                        <div class="device-row">
+                            <div class="device-item">
+                                <div class="device-circle" data-device-type="light" data-device-id="bedroom1-light-1">
+                                    <i class="fas fa-lightbulb device-icon"></i>
+                                </div>
+                                <p class="device-label">Bedroom Light</p>
                             </div>
-                            <p class="device-label">Garage Light</p>
-                        </div>
-                        <div class="device-item">
-                            <div class="device-circle" data-device-type="other" data-device-id="garage-door-1">
-                                <i class="fas fa-door-closed device-icon"></i>
+                            <div class="device-item">
+                                <div class="device-circle fan-control" data-device-type="fan" data-device-id="bedroom1-fan-1" data-current-speed="0">
+                                    <i class="fas fa-fan device-icon fan-icon"></i>
+                                    <div class="fan-speed-indicator">
+                                        <span class="speed-dot" data-speed="1"></span>
+                                        <span class="speed-dot" data-speed="2"></span>
+                                        <span class="speed-dot" data-speed="3"></span>
+                                        <span class="speed-dot" data-speed="4"></span>
+                                        <span class="speed-dot" data-speed="5"></span>
+                                    </div>
+                                </div>
+                                <p class="device-label">Ceiling Fan</p>
                             </div>
-                            <p class="device-label">Garage Door</p>
+                            <div class="device-item">
+                                <div class="device-circle" data-device-type="other" data-device-id="bedroom1-tv-1">
+                                    <i class="fas fa-tv device-icon"></i>
+                                </div>
+                                <p class="device-label">Smart TV</p>
+                            </div>
+                            <div class="device-item">
+                                <div class="device-circle" data-device-type="other" data-device-id="bedroom1-lamp-1">
+                                    <i class="far fa-lightbulb device-icon"></i>
+                                </div>
+                                <p class="device-label">Lamp</p>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Balcony Controls -->
-                <div class="room-controls" id="balcony" style="display: none;">
-                    <div class="device-row">
-                        <div class="device-item">
-                            <div class="device-circle" data-device-type="light" data-device-id="balcony-light-1">
-                                <i class="fas fa-lightbulb device-icon"></i>
+                    <!-- Bedroom 2 Controls -->
+                    <div class="room-controls" id="bedroom2" style="display: none;">
+                        <div class="device-row">
+                            <div class="device-item">
+                                <div class="device-circle" data-device-type="light" data-device-id="bedroom2-light-1">
+                                    <i class="fas fa-lightbulb device-icon"></i>
+                                </div>
+                                <p class="device-label">Bedroom Light</p>
                             </div>
-                            <p class="device-label">Balcony Light</p>
+                            <div class="device-item">
+                                <div class="device-circle fan-control" data-device-type="fan" data-device-id="bedroom2-fan-1" data-current-speed="0">
+                                    <i class="fas fa-fan device-icon fan-icon"></i>
+                                    <div class="fan-speed-indicator">
+                                        <span class="speed-dot" data-speed="1"></span>
+                                        <span class="speed-dot" data-speed="2"></span>
+                                        <span class="speed-dot" data-speed="3"></span>
+                                        <span class="speed-dot" data-speed="4"></span>
+                                        <span class="speed-dot" data-speed="5"></span>
+                                    </div>
+                                </div>
+                                <p class="device-label">Ceiling Fan</p>
+                            </div>
+                            <div class="device-item">
+                                <div class="device-circle" data-device-type="other" data-device-id="bedroom2-tv-1">
+                                    <i class="fas fa-tv device-icon"></i>
+                                </div>
+                                <p class="device-label">Smart TV</p>
+                            </div>
+                            <div class="device-item">
+                                <div class="device-circle" data-device-type="other" data-device-id="bedroom2-speakers-1">
+                                    <i class="fas fa-volume-down device-icon"></i>
+                                </div>
+                                <p class="device-label">Speakers</p>
+                            </div>
                         </div>
-                        <button class="add-device-btn"><i class="fa-solid fa-plus"></i> Add Device</button>
                     </div>
+
+                    <!-- Kitchen Controls -->
+                    <div class="room-controls" id="kitchen" style="display: none;">
+                        <div class="device-row">
+                            <div class="device-item">
+                                <div class="device-circle" data-device-type="light" data-device-id="kitchen-light-1">
+                                    <i class="fas fa-lightbulb device-icon"></i>
+                                </div>
+                                <p class="device-label">Kitchen Light</p>
+                            </div>
+                            <div class="device-item">
+                                <div class="device-circle fan-control" data-device-type="fan" data-device-id="kitchen-fan-1" data-current-speed="0">
+                                    <i class="fas fa-fan device-icon fan-icon"></i>
+                                    <div class="fan-speed-indicator">
+                                        <span class="speed-dot" data-speed="1"></span>
+                                        <span class="speed-dot" data-speed="2"></span>
+                                        <span class="speed-dot" data-speed="3"></span>
+                                        <span class="speed-dot" data-speed="4"></span>
+                                        <span class="speed-dot" data-speed="5"></span>
+                                    </div>
+                                </div>
+                                <p class="device-label">Ceiling Fan</p>
+                            </div>
+                            <div class="device-item">
+                                <div class="device-circle" data-device-type="other" data-device-id="kitchen-tv-1">
+                                    <i class="fas fa-tv device-icon"></i>
+                                </div>
+                                <p class="device-label">Smart TV</p>
+                            </div>
+                            <div class="device-item">
+                                <div class="device-circle" data-device-type="other" data-device-id="kitchen-coffee-1">
+                                    <i class="fas fa-coffee device-icon"></i>
+                                </div>
+                                <p class="device-label">Coffee Maker</p>
+                            </div>
+                            <div class="device-item">
+                                <div class="device-circle" data-device-type="other" data-device-id="kitchen-blender-1">
+                                    <i class="fas fa-blender device-icon"></i>
+                                </div>
+                                <p class="device-label">Blender</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bathroom Controls -->
+                    <div class="room-controls" id="bathroom" style="display: none;">
+                        <div class="device-row">
+                            <div class="device-item">
+                                <div class="device-circle" data-device-type="light" data-device-id="bathroom-light-1">
+                                    <i class="fas fa-lightbulb device-icon"></i>
+                                </div>
+                                <p class="device-label">Bathroom Light</p>
+                            </div>
+                            <div class="device-item">
+                                <div class="device-circle fan-control" data-device-type="fan" data-device-id="bathroom-fan-1" data-current-speed="0">
+                                    <i class="fas fa-fan device-icon fan-icon"></i>
+                                    <div class="fan-speed-indicator">
+                                        <span class="speed-dot" data-speed="1"></span>
+                                        <span class="speed-dot" data-speed="2"></span>
+                                        <span class="speed-dot" data-speed="3"></span>
+                                        <span class="speed-dot" data-speed="4"></span>
+                                        <span class="speed-dot" data-speed="5"></span>
+                                    </div>
+                                </div>
+                                <p class="device-label">Exhaust Fan</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Garage Controls -->
+                    <div class="room-controls" id="garage" style="display: none;">
+                        <div class="device-row">
+                            <div class="device-item">
+                                <div class="device-circle" data-device-type="light" data-device-id="garage-light-1">
+                                    <i class="fas fa-lightbulb device-icon"></i>
+                                </div>
+                                <p class="device-label">Garage Light</p>
+                            </div>
+                            <div class="device-item">
+                                <div class="device-circle" data-device-type="other" data-device-id="garage-door-1">
+                                    <i class="fas fa-door-closed device-icon"></i>
+                                </div>
+                                <p class="device-label">Garage Door</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Balcony Controls -->
+                    <div class="room-controls" id="balcony" style="display: none;">
+                        <div class="device-row">
+                            <div class="device-item">
+                                <div class="device-circle" data-device-type="light" data-device-id="balcony-light-1">
+                                    <i class="fas fa-lightbulb device-icon"></i>
+                                </div>
+                                <p class="device-label">Balcony Light</p>
+                            </div>
+                            <button class="add-device-btn"><i class="fa-solid fa-plus"></i> Add Device</button>
+                        </div>
+                    </div>
+
                 </div>
-
-            </div>
-        </div>
-
-        <!-- LIGHTING CONTROL PAGE -->
-        <div class="page" id="lighting" style="display: none;">
-            <h2 class="page-title">Lighting Control</h2>
-
-            <!-- Room Tabs -->
-            <div class="room-tabs lighting-room-tabs">
-                <div class="room-tab active" data-room="living-light">Living Room</div>
-                <div class="room-tab" data-room="bed1-light">Bedroom 1</div>
-                <div class="room-tab" data-room="bed2-light">Bedroom 2</div>
-                <div class="room-tab" data-room="kitchen-light">Kitchen</div>
-                <div class="room-tab" data-room="bath-light">Bathroom</div>
-                <div class="room-tab" data-room="garage-light">Garage</div>
-                <div class="room-tab" data-room="balcony-light">Balcony</div>
             </div>
 
-            <!-- Lighting Controls Container -->
-            <div class="lighting-controls-container">
+            <!-- LIGHTING CONTROL PAGE -->
+            <div class="page" id="lighting" style="display: none;">
+                <h2 class="page-title">Lighting Control</h2>
 
-                <!-- Living Room Light Control -->
-                <div class="light-control-container" id="living-light-control">
-                    <!-- Left: Big Bulb -->
-                    <div class="light-bulb">
-                        <i id="bulb-icon" class="fas fa-lightbulb"></i>
-                    </div>
+                <!-- Room Tabs -->
+                <div class="room-tabs lighting-room-tabs">
+                    <div class="room-tab active" data-room="living-light">Living Room</div>
+                    <div class="room-tab" data-room="bed1-light">Bedroom 1</div>
+                    <div class="room-tab" data-room="bed2-light">Bedroom 2</div>
+                    <div class="room-tab" data-room="kitchen-light">Kitchen</div>
+                    <div class="room-tab" data-room="bath-light">Bathroom</div>
+                    <div class="room-tab" data-room="garage-light">Garage</div>
+                    <div class="room-tab" data-room="balcony-light">Balcony</div>
+                </div>
 
-                    <!-- Right: Vertical Controls -->
-                    <div class="light-controls controls">
-                        <div class="control-group">
-                            <label for="light-power">Power</label>
-                            <label class="switch">
-                                <input type="checkbox" id="light-power">
-                                <span class="slider round"></span>
-                            </label>
+                <!-- Lighting Controls Container -->
+                <div class="lighting-controls-container">
+
+                    <!-- Living Room Light Control -->
+                    <div class="light-control-container" id="living-light-control">
+                        <!-- Left: Big Bulb -->
+                        <div class="light-bulb">
+                            <i id="bulb-icon" class="fas fa-lightbulb"></i>
                         </div>
-                        <div class="control-group">
-                            <label for="brightness-slider">Brightness</label>
-                            <input type="range" min="0" max="100" value="60" class="slider-control compact-slider" id="brightness-slider">
-                            <span id="brightness-value">60</span>%
-                        </div>
-                        <div class="control-group">
-                            <label for="color-picker">Color</label>
-                            <input type="color" id="color-picker" value="#ffff00">
-                        </div>
-                    </div>
-                </div>
 
-                <!-- Bedroom 1 Light -->
-                <div class="lighting-controls" id="bed1-light" style="display: none;">
-                    <i class="fas fa-lightbulb lighting-icon"></i>
-                    <div class="lighting-settings">
-                        <button class="light-power-btn">OFF</button>
-                        <label>Brightness: <span class="brightness-value">50%</span></label>
-                        <input type="range" min="1" max="100" value="50" class="light-brightness-slider">
-                    </div>
-                </div>
-
-                <!-- Bedroom 2 Light -->
-                <div class="lighting-controls" id="bed2-light" style="display: none;">
-                    <i class="fas fa-lightbulb lighting-icon"></i>
-                    <div class="lighting-settings">
-                        <button class="light-power-btn">OFF</button>
-                        <label>Brightness: <span class="brightness-value">50%</span></label>
-                        <input type="range" min="1" max="100" value="50" class="light-brightness-slider">
-                    </div>
-                </div>
-
-                <!-- Kitchen Light -->
-                <div class="lighting-controls" id="kitchen-light" style="display: none;">
-                    <i class="fas fa-lightbulb lighting-icon"></i>
-                    <div class="lighting-settings">
-                        <button class="light-power-btn">OFF</button>
-                        <label>Brightness: <span class="brightness-value">60%</span></label>
-                        <input type="range" min="1" max="100" value="60" class="light-brightness-slider">
-                    </div>
-                </div>
-
-                <!-- Bathroom Light -->
-                <div class="lighting-controls" id="bath-light" style="display: none;">
-                    <i class="fas fa-lightbulb lighting-icon"></i>
-                    <div class="lighting-settings">
-                        <button class="light-power-btn">OFF</button>
-                        <label>Brightness: <span class="brightness-value">40%</span></label>
-                        <input type="range" min="1" max="100" value="40" class="light-brightness-slider">
-                    </div>
-                </div>
-
-                <!-- Garage Light -->
-                <div class="lighting-controls" id="garage-light" style="display: none;">
-                    <i class="fas fa-lightbulb lighting-icon"></i>
-                    <div class="lighting-settings">
-                        <button class="light-power-btn">OFF</button>
-                        <label>Brightness: <span class="brightness-value">70%</span></label>
-                        <input type="range" min="1" max="100" value="70" class="light-brightness-slider">
-                    </div>
-                </div>
-
-                <!-- Balcony Light -->
-                <div class="lighting-controls" id="balcony-light" style="display: none;">
-                    <div class="control-container">
-                        <div class="device-icon">
-                            <i class="fas fa-lightbulb" id="bulb-icon"></i>
-                        </div>
-                        <div class="controls">
+                        <!-- Right: Vertical Controls -->
+                        <div class="light-controls controls">
                             <div class="control-group">
-                                <label>Power</label>
+                                <label for="light-power">Power</label>
                                 <label class="switch">
                                     <input type="checkbox" id="light-power">
                                     <span class="slider round"></span>
                                 </label>
                             </div>
                             <div class="control-group">
-                                <label>Brightness: <span id="brightness-value">50</span>%</label>
-                                <input type="range" min="0" max="100" value="50" class="slider-control" id="brightness-slider">
+                                <label for="brightness-slider">Brightness</label>
+                                <input type="range" min="0" max="100" value="60" class="slider-control compact-slider" id="brightness-slider">
+                                <span id="brightness-value">60</span>%
+                            </div>
+                            <div class="control-group">
+                                <label for="color-picker">Color</label>
+                                <input type="color" id="color-picker" value="#ffff00">
                             </div>
                         </div>
                     </div>
-                </div>
 
-            </div> <!-- end lighting-controls-container -->
-        </div> <!-- end lighting page -->
-        <!-- VENTILATION CONTROL PAGE -->
-        <div class="page" id="ventilation" style="display: none;">
-            <h2 class="page-title">Ventilation Control</h2>
+                    <!-- Bedroom 1 Light -->
+                    <div class="lighting-controls" id="bed1-light" style="display: none;">
+                        <i class="fas fa-lightbulb lighting-icon"></i>
+                        <div class="lighting-settings">
+                            <button class="light-power-btn">OFF</button>
+                            <label>Brightness: <span class="brightness-value">50%</span></label>
+                            <input type="range" min="1" max="100" value="50" class="light-brightness-slider">
+                        </div>
+                    </div>
 
-            <!-- Room Tabs -->
-            <div class="room-tabs ventilation-room-tabs">
-                <div class="room-tab active" data-room="living-ventilation">Living Room</div>
-                <div class="room-tab" data-room="bed1-ventilation">Bedroom 1</div>
-                <div class="room-tab" data-room="bed2-ventilation">Bedroom 2</div>
-                <div class="room-tab" data-room="kitchen-ventilation">Kitchen</div>
-                <div class="room-tab" data-room="bath-ventilation">Bathroom</div>
-                <div class="room-tab" data-room="garage-ventilation">Garage</div>
-                <div class="room-tab" data-room="balcony-ventilation">Balcony</div>
-            </div>
+                    <!-- Bedroom 2 Light -->
+                    <div class="lighting-controls" id="bed2-light" style="display: none;">
+                        <i class="fas fa-lightbulb lighting-icon"></i>
+                        <div class="lighting-settings">
+                            <button class="light-power-btn">OFF</button>
+                            <label>Brightness: <span class="brightness-value">50%</span></label>
+                            <input type="range" min="1" max="100" value="50" class="light-brightness-slider">
+                        </div>
+                    </div>
 
-            <!-- Ventilation Controls Container -->
-            <div class="ventilation-controls-container">
-                <!-- Living Room Ventilation -->
-                <div class="ventilation-controls" id="living-ventilation" style="display:flex;">
-                    <div class="device-row">
-                        <div class="device-item">
-                            <div class="device-circle fan-control" data-device-id="living-vent-1" data-current-speed="0">
-                                <i class="fas fa-fan device-icon"></i>
-                                <div class="fan-speed-indicator">
-                                    <span class="speed-dot" data-speed="1"></span>
-                                    <span class="speed-dot" data-speed="2"></span>
-                                    <span class="speed-dot" data-speed="3"></span>
-                                    <span class="speed-dot" data-speed="4"></span>
-                                    <span class="speed-dot" data-speed="5"></span>
+                    <!-- Kitchen Light -->
+                    <div class="lighting-controls" id="kitchen-light" style="display: none;">
+                        <i class="fas fa-lightbulb lighting-icon"></i>
+                        <div class="lighting-settings">
+                            <button class="light-power-btn">OFF</button>
+                            <label>Brightness: <span class="brightness-value">60%</span></label>
+                            <input type="range" min="1" max="100" value="60" class="light-brightness-slider">
+                        </div>
+                    </div>
+
+                    <!-- Bathroom Light -->
+                    <div class="lighting-controls" id="bath-light" style="display: none;">
+                        <i class="fas fa-lightbulb lighting-icon"></i>
+                        <div class="lighting-settings">
+                            <button class="light-power-btn">OFF</button>
+                            <label>Brightness: <span class="brightness-value">40%</span></label>
+                            <input type="range" min="1" max="100" value="40" class="light-brightness-slider">
+                        </div>
+                    </div>
+
+                    <!-- Garage Light -->
+                    <div class="lighting-controls" id="garage-light" style="display: none;">
+                        <i class="fas fa-lightbulb lighting-icon"></i>
+                        <div class="lighting-settings">
+                            <button class="light-power-btn">OFF</button>
+                            <label>Brightness: <span class="brightness-value">70%</span></label>
+                            <input type="range" min="1" max="100" value="70" class="light-brightness-slider">
+                        </div>
+                    </div>
+
+                    <!-- Balcony Light -->
+                    <div class="lighting-controls" id="balcony-light" style="display: none;">
+                        <div class="control-container">
+                            <div class="device-icon">
+                                <i class="fas fa-lightbulb" id="bulb-icon"></i>
+                            </div>
+                            <div class="controls">
+                                <div class="control-group">
+                                    <label>Power</label>
+                                    <label class="switch">
+                                        <input type="checkbox" id="light-power">
+                                        <span class="slider round"></span>
+                                    </label>
+                                </div>
+                                <div class="control-group">
+                                    <label>Brightness: <span id="brightness-value">50</span>%</label>
+                                    <input type="range" min="0" max="100" value="50" class="slider-control" id="brightness-slider">
                                 </div>
                             </div>
-                            <p class="device-label">Ventilation Fan</p>
+                        </div>
+                    </div>
+
+                </div> <!-- end lighting-controls-container -->
+            </div> <!-- end lighting page -->
+            <!-- VENTILATION CONTROL PAGE -->
+            <div class="page" id="ventilation" style="display: none;">
+                <h2 class="page-title">Ventilation Control</h2>
+
+                <!-- Room Tabs -->
+                <div class="room-tabs ventilation-room-tabs">
+                    <div class="room-tab active" data-room="living-ventilation">Living Room</div>
+                    <div class="room-tab" data-room="bed1-ventilation">Bedroom 1</div>
+                    <div class="room-tab" data-room="bed2-ventilation">Bedroom 2</div>
+                    <div class="room-tab" data-room="kitchen-ventilation">Kitchen</div>
+                    <div class="room-tab" data-room="bath-ventilation">Bathroom</div>
+                    <div class="room-tab" data-room="garage-ventilation">Garage</div>
+                    <div class="room-tab" data-room="balcony-ventilation">Balcony</div>
+                </div>
+
+                <!-- Ventilation Controls Container -->
+                <div class="ventilation-controls-container">
+                    <!-- Living Room Ventilation -->
+                    <div class="ventilation-controls" id="living-ventilation" style="display:flex;">
+                        <div class="device-row">
+                            <div class="device-item">
+                                <div class="device-circle fan-control" data-device-id="living-vent-1" data-current-speed="0">
+                                    <i class="fas fa-fan device-icon"></i>
+                                    <div class="fan-speed-indicator">
+                                        <span class="speed-dot" data-speed="1"></span>
+                                        <span class="speed-dot" data-speed="2"></span>
+                                        <span class="speed-dot" data-speed="3"></span>
+                                        <span class="speed-dot" data-speed="4"></span>
+                                        <span class="speed-dot" data-speed="5"></span>
+                                    </div>
+                                </div>
+                                <p class="device-label">Ventilation Fan</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bedroom 1 Ventilation -->
+                    <div class="ventilation-controls" id="bed1-ventilation" style="display: none;">
+                        <div class="ventilation-settings">
+                            <button class="vent-power-btn">OFF</button>
+                            <label>Speed: <span class="speed-value">0</span></label>
+                            <input type="range" min="0" max="5" value="0" class="vent-speed-slider">
+                        </div>
+                    </div>
+
+                    <!-- Bedroom 2 Ventilation -->
+                    <div class="ventilation-controls" id="bed2-ventilation" style="display: none;">
+                        <div class="ventilation-settings">
+                            <button class="vent-power-btn">OFF</button>
+                            <label>Speed: <span class="speed-value">0</span></label>
+                            <input type="range" min="0" max="5" value="0" class="vent-speed-slider">
+                        </div>
+                    </div>
+
+                    <!-- Kitchen Ventilation -->
+                    <div class="ventilation-controls" id="kitchen-ventilation" style="display: none;">
+                        <div class="ventilation-settings">
+                            <button class="vent-power-btn">OFF</button>
+                            <label>Speed: <span class="speed-value">0</span></label>
+                            <input type="range" min="0" max="5" value="0" class="vent-speed-slider">
+                        </div>
+                    </div>
+
+                    <!-- Bathroom Ventilation -->
+                    <div class="ventilation-controls" id="bath-ventilation" style="display: none;">
+                        <div class="ventilation-settings">
+                            <button class="vent-power-btn">OFF</button>
+                            <label>Speed: <span class="speed-value">0</span></label>
+                            <input type="range" min="0" max="5" value="0" class="vent-speed-slider">
+                        </div>
+                    </div>
+
+                    <!-- Garage Ventilation -->
+                    <div class="ventilation-controls" id="garage-ventilation" style="display: none;">
+                        <div class="ventilation-settings">
+                            <button class="vent-power-btn">OFF</button>
+                            <label>Speed: <span class="speed-value">0</span></label>
+                            <input type="range" min="0" max="5" value="0" class="vent-speed-slider">
+                        </div>
+                    </div>
+
+                    <!-- Balcony Ventilation -->
+                    <div class="ventilation-controls" id="balcony-ventilation" style="display: none;">
+                        <div class="ventilation-settings">
+                            <button class="vent-power-btn">OFF</button>
+                            <label>Speed: <span class="speed-value">0</span></label>
+                            <input type="range" min="0" max="5" value="0" class="vent-speed-slider">
                         </div>
                     </div>
                 </div>
-
-                <!-- Bedroom 1 Ventilation -->
-                <div class="ventilation-controls" id="bed1-ventilation" style="display: none;">
-                    <div class="ventilation-settings">
-                        <button class="vent-power-btn">OFF</button>
-                        <label>Speed: <span class="speed-value">0</span></label>
-                        <input type="range" min="0" max="5" value="0" class="vent-speed-slider">
-                    </div>
-                </div>
-
-                <!-- Bedroom 2 Ventilation -->
-                <div class="ventilation-controls" id="bed2-ventilation" style="display: none;">
-                    <div class="ventilation-settings">
-                        <button class="vent-power-btn">OFF</button>
-                        <label>Speed: <span class="speed-value">0</span></label>
-                        <input type="range" min="0" max="5" value="0" class="vent-speed-slider">
-                    </div>
-                </div>
-
-                <!-- Kitchen Ventilation -->
-                <div class="ventilation-controls" id="kitchen-ventilation" style="display: none;">
-                    <div class="ventilation-settings">
-                        <button class="vent-power-btn">OFF</button>
-                        <label>Speed: <span class="speed-value">0</span></label>
-                        <input type="range" min="0" max="5" value="0" class="vent-speed-slider">
-                    </div>
-                </div>
-
-                <!-- Bathroom Ventilation -->
-                <div class="ventilation-controls" id="bath-ventilation" style="display: none;">
-                    <div class="ventilation-settings">
-                        <button class="vent-power-btn">OFF</button>
-                        <label>Speed: <span class="speed-value">0</span></label>
-                        <input type="range" min="0" max="5" value="0" class="vent-speed-slider">
-                    </div>
-                </div>
-
-                <!-- Garage Ventilation -->
-                <div class="ventilation-controls" id="garage-ventilation" style="display: none;">
-                    <div class="ventilation-settings">
-                        <button class="vent-power-btn">OFF</button>
-                        <label>Speed: <span class="speed-value">0</span></label>
-                        <input type="range" min="0" max="5" value="0" class="vent-speed-slider">
-                    </div>
-                </div>
-
-                <!-- Balcony Ventilation -->
-                <div class="ventilation-controls" id="balcony-ventilation" style="display: none;">
-                    <div class="ventilation-settings">
-                        <button class="vent-power-btn">OFF</button>
-                        <label>Speed: <span class="speed-value">0</span></label>
-                        <input type="range" min="0" max="5" value="0" class="vent-speed-slider">
-                    </div>
-                </div>
             </div>
+
+            <!-- AIRCON CONTROL PAGE -->
+            <div class="page" id="aircon" style="display: none;">
+                <h2 class="page-title">Air Conditioning Control</h2>
+
+                <!-- Room Tabs -->
+                <div class="room-tabs aircon-room-tabs">
+                    <div class="room-tab active" data-room="living-aircon">Living Room</div>
+                    <div class="room-tab" data-room="bed1-aircon">Bedroom 1</div>
+                    <div class="room-tab" data-room="bed2-aircon">Bedroom 2</div>
+                    <div class="room-tab" data-room="kitchen-aircon">Kitchen</div>
+                    <div class="room-tab" data-room="bath-aircon">Bathroom</div>
+                    <div class="room-tab" data-room="garage-aircon">Garage</div>
+                    <div class="room-tab" data-room="balcony-aircon">Balcony</div>
+                </div>
+
+                <!-- Aircon Controls Container -->
+                <div class="aircon-controls-container">
+                    <!-- Living Room AC -->
+                    <div class="aircon-controls" id="living-aircon" style="display:flex;">
+                        <div class="device-item">
+                            <div class="device-circle ac-control" data-device-id="living-ac-1">
+                                <i class="fas fa-snowflake device-icon"></i>
+                            </div>
+                            <p class="device-label">Air Conditioner</p>
+                            <div class="ac-settings">
+                                <button class="ac-power-btn">OFF</button>
+                                <label>Temperature: <span class="ac-temp-value">24°C</span></label>
+                                <input type="range" min="16" max="30" value="24" class="ac-temp-slider">
+                                <label>Mode:</label>
+                                <select class="ac-mode-select">
+                                    <option value="cool">Cool</option>
+                                    <option value="heat">Heat</option>
+                                    <option value="fan">Fan</option>
+                                    <option value="dry">Dry</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bedroom 1 AC -->
+                    <div class="aircon-controls" id="bed1-aircon" style="display: none;">
+                        <div class="device-item">
+                            <div class="device-circle ac-control" data-device-id="bed1-ac-1">
+                                <i class="fas fa-snowflake device-icon"></i>
+                            </div>
+                            <p class="device-label">Air Conditioner</p>
+                            <div class="ac-settings">
+                                <button class="ac-power-btn">OFF</button>
+                                <label>Temperature: <span class="ac-temp-value">22°C</span></label>
+                                <input type="range" min="16" max="30" value="22" class="ac-temp-slider">
+                                <label>Mode:</label>
+                                <select class="ac-mode-select">
+                                    <option value="cool">Cool</option>
+                                    <option value="heat">Heat</option>
+                                    <option value="fan">Fan</option>
+                                    <option value="dry">Dry</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bedroom 2 AC -->
+                    <div class="aircon-controls" id="bed2-aircon" style="display: none;">
+                        <div class="device-item">
+                            <div class="device-circle ac-control" data-device-id="bed2-ac-1">
+                                <i class="fas fa-snowflake device-icon"></i>
+                            </div>
+                            <p class="device-label">Air Conditioner</p>
+                            <div class="ac-settings">
+                                <button class="ac-power-btn">OFF</button>
+                                <label>Temperature: <span class="ac-temp-value">22°C</span></label>
+                                <input type="range" min="16" max="30" value="22" class="ac-temp-slider">
+                                <label>Mode:</label>
+                                <select class="ac-mode-select">
+                                    <option value="cool">Cool</option>
+                                    <option value="heat">Heat</option>
+                                    <option value="fan">Fan</option>
+                                    <option value="dry">Dry</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Kitchen AC -->
+                    <div class="aircon-controls" id="kitchen-aircon" style="display: none;">
+                        <div class="device-item">
+                            <div class="device-circle ac-control" data-device-id="kitchen-ac-1">
+                                <i class="fas fa-snowflake device-icon"></i>
+                            </div>
+                            <p class="device-label">Air Conditioner</p>
+                            <div class="ac-settings">
+                                <button class="ac-power-btn">OFF</button>
+                                <label>Temperature: <span class="ac-temp-value">24°C</span></label>
+                                <input type="range" min="16" max="30" value="24" class="ac-temp-slider">
+                                <label>Mode:</label>
+                                <select class="ac-mode-select">
+                                    <option value="cool">Cool</option>
+                                    <option value="heat">Heat</option>
+                                    <option value="fan">Fan</option>
+                                    <option value="dry">Dry</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bathroom AC -->
+                    <div class="aircon-controls" id="bath-aircon" style="display: none;">
+                        <div class="device-item">
+                            <div class="device-circle ac-control" data-device-id="bath-ac-1">
+                                <i class="fas fa-snowflake device-icon"></i>
+                            </div>
+                            <p class="device-label">Air Conditioner</p>
+                            <div class="ac-settings">
+                                <button class="ac-power-btn">OFF</button>
+                                <label>Temperature: <span class="ac-temp-value">24°C</span></label>
+                                <input type="range" min="16" max="30" value="24" class="ac-temp-slider">
+                                <label>Mode:</label>
+                                <select class="ac-mode-select">
+                                    <option value="cool">Cool</option>
+                                    <option value="heat">Heat</option>
+                                    <option value="fan">Fan</option>
+                                    <option value="dry">Dry</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Garage AC -->
+                    <div class="aircon-controls" id="garage-aircon" style="display: none;">
+                        <div class="device-item">
+                            <div class="device-circle ac-control" data-device-id="garage-ac-1">
+                                <i class="fas fa-snowflake device-icon"></i>
+                            </div>
+                            <p class="device-label">Air Conditioner</p>
+                            <div class="ac-settings">
+                                <button class="ac-power-btn">OFF</button>
+                                <label>Temperature: <span class="ac-temp-value">24°C</span></label>
+                                <input type="range" min="16" max="30" value="24" class="ac-temp-slider">
+                                <label>Mode:</label>
+                                <select class="ac-mode-select">
+                                    <option value="cool">Cool</option>
+                                    <option value="heat">Heat</option>
+                                    <option value="fan">Fan</option>
+                                    <option value="dry">Dry</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Balcony AC -->
+                    <div class="aircon-controls" id="balcony-aircon" style="display: none;">
+                        <div class="device-item">
+                            <div class="device-circle ac-control" data-device-id="balcony-ac-1">
+                                <i class="fas fa-snowflake device-icon"></i>
+                            </div>
+                            <p class="device-label">Air Conditioner</p>
+                            <div class="ac-settings">
+                                <button class="ac-power-btn">OFF</button>
+                                <label>Temperature: <span class="ac-temp-value">24°C</span></label>
+                                <input type="range" min="16" max="30" value="24" class="ac-temp-slider">
+                                <label>Mode:</label>
+                                <select class="ac-mode-select">
+                                    <option value="cool">Cool</option>
+                                    <option value="heat">Heat</option>
+                                    <option value="fan">Fan</option>
+                                    <option value="dry">Dry</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                </div> <!-- end aircon-controls-container -->
+            </div> <!-- end aircon page -->
+        </div> <!-- end main-content -->
+
+        <script src="script.js"></script>
         </div>
-
-        <!-- AIRCON CONTROL PAGE -->
-        <div class="page" id="aircon" style="display: none;">
-            <h2 class="page-title">Air Conditioning Control</h2>
-
-            <!-- Room Tabs -->
-            <div class="room-tabs aircon-room-tabs">
-                <div class="room-tab active" data-room="living-aircon">Living Room</div>
-                <div class="room-tab" data-room="bed1-aircon">Bedroom 1</div>
-                <div class="room-tab" data-room="bed2-aircon">Bedroom 2</div>
-                <div class="room-tab" data-room="kitchen-aircon">Kitchen</div>
-                <div class="room-tab" data-room="bath-aircon">Bathroom</div>
-                <div class="room-tab" data-room="garage-aircon">Garage</div>
-                <div class="room-tab" data-room="balcony-aircon">Balcony</div>
-            </div>
-
-            <!-- Aircon Controls Container -->
-            <div class="aircon-controls-container">
-                <!-- Living Room AC -->
-                <div class="aircon-controls" id="living-aircon" style="display:flex;">
-                    <div class="device-item">
-                        <div class="device-circle ac-control" data-device-id="living-ac-1">
-                            <i class="fas fa-snowflake device-icon"></i>
-                        </div>
-                        <p class="device-label">Air Conditioner</p>
-                        <div class="ac-settings">
-                            <button class="ac-power-btn">OFF</button>
-                            <label>Temperature: <span class="ac-temp-value">24°C</span></label>
-                            <input type="range" min="16" max="30" value="24" class="ac-temp-slider">
-                            <label>Mode:</label>
-                            <select class="ac-mode-select">
-                                <option value="cool">Cool</option>
-                                <option value="heat">Heat</option>
-                                <option value="fan">Fan</option>
-                                <option value="dry">Dry</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Bedroom 1 AC -->
-                <div class="aircon-controls" id="bed1-aircon" style="display: none;">
-                    <div class="device-item">
-                        <div class="device-circle ac-control" data-device-id="bed1-ac-1">
-                            <i class="fas fa-snowflake device-icon"></i>
-                        </div>
-                        <p class="device-label">Air Conditioner</p>
-                        <div class="ac-settings">
-                            <button class="ac-power-btn">OFF</button>
-                            <label>Temperature: <span class="ac-temp-value">22°C</span></label>
-                            <input type="range" min="16" max="30" value="22" class="ac-temp-slider">
-                            <label>Mode:</label>
-                            <select class="ac-mode-select">
-                                <option value="cool">Cool</option>
-                                <option value="heat">Heat</option>
-                                <option value="fan">Fan</option>
-                                <option value="dry">Dry</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Bedroom 2 AC -->
-                <div class="aircon-controls" id="bed2-aircon" style="display: none;">
-                    <div class="device-item">
-                        <div class="device-circle ac-control" data-device-id="bed2-ac-1">
-                            <i class="fas fa-snowflake device-icon"></i>
-                        </div>
-                        <p class="device-label">Air Conditioner</p>
-                        <div class="ac-settings">
-                            <button class="ac-power-btn">OFF</button>
-                            <label>Temperature: <span class="ac-temp-value">22°C</span></label>
-                            <input type="range" min="16" max="30" value="22" class="ac-temp-slider">
-                            <label>Mode:</label>
-                            <select class="ac-mode-select">
-                                <option value="cool">Cool</option>
-                                <option value="heat">Heat</option>
-                                <option value="fan">Fan</option>
-                                <option value="dry">Dry</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Kitchen AC -->
-                <div class="aircon-controls" id="kitchen-aircon" style="display: none;">
-                    <div class="device-item">
-                        <div class="device-circle ac-control" data-device-id="kitchen-ac-1">
-                            <i class="fas fa-snowflake device-icon"></i>
-                        </div>
-                        <p class="device-label">Air Conditioner</p>
-                        <div class="ac-settings">
-                            <button class="ac-power-btn">OFF</button>
-                            <label>Temperature: <span class="ac-temp-value">24°C</span></label>
-                            <input type="range" min="16" max="30" value="24" class="ac-temp-slider">
-                            <label>Mode:</label>
-                            <select class="ac-mode-select">
-                                <option value="cool">Cool</option>
-                                <option value="heat">Heat</option>
-                                <option value="fan">Fan</option>
-                                <option value="dry">Dry</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Bathroom AC -->
-                <div class="aircon-controls" id="bath-aircon" style="display: none;">
-                    <div class="device-item">
-                        <div class="device-circle ac-control" data-device-id="bath-ac-1">
-                            <i class="fas fa-snowflake device-icon"></i>
-                        </div>
-                        <p class="device-label">Air Conditioner</p>
-                        <div class="ac-settings">
-                            <button class="ac-power-btn">OFF</button>
-                            <label>Temperature: <span class="ac-temp-value">24°C</span></label>
-                            <input type="range" min="16" max="30" value="24" class="ac-temp-slider">
-                            <label>Mode:</label>
-                            <select class="ac-mode-select">
-                                <option value="cool">Cool</option>
-                                <option value="heat">Heat</option>
-                                <option value="fan">Fan</option>
-                                <option value="dry">Dry</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Garage AC -->
-                <div class="aircon-controls" id="garage-aircon" style="display: none;">
-                    <div class="device-item">
-                        <div class="device-circle ac-control" data-device-id="garage-ac-1">
-                            <i class="fas fa-snowflake device-icon"></i>
-                        </div>
-                        <p class="device-label">Air Conditioner</p>
-                        <div class="ac-settings">
-                            <button class="ac-power-btn">OFF</button>
-                            <label>Temperature: <span class="ac-temp-value">24°C</span></label>
-                            <input type="range" min="16" max="30" value="24" class="ac-temp-slider">
-                            <label>Mode:</label>
-                            <select class="ac-mode-select">
-                                <option value="cool">Cool</option>
-                                <option value="heat">Heat</option>
-                                <option value="fan">Fan</option>
-                                <option value="dry">Dry</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Balcony AC -->
-                <div class="aircon-controls" id="balcony-aircon" style="display: none;">
-                    <div class="device-item">
-                        <div class="device-circle ac-control" data-device-id="balcony-ac-1">
-                            <i class="fas fa-snowflake device-icon"></i>
-                        </div>
-                        <p class="device-label">Air Conditioner</p>
-                        <div class="ac-settings">
-                            <button class="ac-power-btn">OFF</button>
-                            <label>Temperature: <span class="ac-temp-value">24°C</span></label>
-                            <input type="range" min="16" max="30" value="24" class="ac-temp-slider">
-                            <label>Mode:</label>
-                            <select class="ac-mode-select">
-                                <option value="cool">Cool</option>
-                                <option value="heat">Heat</option>
-                                <option value="fan">Fan</option>
-                                <option value="dry">Dry</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-
-            </div> <!-- end aircon-controls-container -->
-        </div> <!-- end aircon page -->
-    </div> <!-- end main-content -->
-
-            <script src="script.js"></script>
 </body>
 </html>
