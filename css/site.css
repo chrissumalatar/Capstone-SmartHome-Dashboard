@@ -1,32 +1,91 @@
-﻿/* ==========================
+/* Import font */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+/* Apply default font */
+* {
+    font-family: 'Inter', sans-serif;
+}
+/* ==========================
+   FULL DASHBOARD CONTAINER - Full Size
+========================== */
+.dashboard-container {
+    position: relative;
+    width: 95vw; /* almost full viewport width */
+    min-height: 95vh; /* fill most of the screen */
+    margin: 2.5vh auto; /* center vertically */
+    padding: 30px;
+    display: flex; /* sidebar + main content */
+    overflow: visible; /* remove scrollbars */
+    /* Glass effect */
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+}
+
+    /* Sidebar */
+    .dashboard-container .sidebar {
+        flex-shrink: 0;
+        width: 240px;
+    }
+
+    /* Main content */
+    .dashboard-container .main-content {
+        flex: 1;
+        padding: 20px 30px;
+        overflow: visible; /* ensure no inner scroll */
+    }
+/* ==========================
    RESET
 ========================== */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Segoe UI, sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
 }
 
 body {
-    background: #060b1a;
+    background-image: url('https://raw.githubusercontent.com/chrissumalatar/Capstone-SmartHome-Dashboard/refs/heads/smarthome/vivid-blurred-colorful-wallpaper-background_58702-3920.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
     color: white;
     display: flex;
+    margin: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
 }
-
+..main-container {
+    position: relative; 
+    z-index: 1; 
+    width: 100%; 
+    max-width: 100vw; 
+    padding: 20px; 
+}
 /* ==========================
    SIDEBAR
 ========================== */
 .sidebar {
     width: 240px;
     height: 100vh;
-    background: #020617;
-    padding: 20px;
     position: fixed;
-    left: 0;
     top: 0;
+    left: 0;
+    padding: 20px;
+    /* Glass effect */
+    background: rgba(255, 255, 255, 0.05); /* very transparent white */
+    backdrop-filter: blur(10px); /* frosted glass blur */
+    -webkit-backdrop-filter: blur(10px); /* for Safari */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* subtle border */
+    border-radius: 12px; /* slightly rounded corners */
+    box-shadow: 0 8px 32px rgba(0,0,0,0.25); /* soft shadow for depth */
+    color: #0f172a; /* keep your text color */
 }
 
+/* Logo styling */
 .logo {
     font-size: 22px;
     font-weight: 600;
@@ -34,11 +93,14 @@ body {
 }
 
     .logo span {
-        color: #6ce5ff;
+        color: #0f172a;
     }
 
+/* Navigation links */
 .nav-links {
     list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
     .nav-links li {
@@ -49,19 +111,22 @@ body {
         display: flex;
         align-items: center;
         gap: 12px;
-        color: #b6c2d9;
+        color: #0b1120;
+        transition: all 0.3s ease;
     }
 
         .nav-links li:hover {
-            background: #0f172a;
-            color: white;
+            color: #2c3e50; /* accent text color */
+            border: 1px solid rgba(255, 255, 255, 0.3); /* glassy outline */
+            backdrop-filter: blur(8px); /* subtle blur on hover */
         }
 
         .nav-links li.active {
-            background: #0f172a;
-            color: #6ce5ff;
+            background: rgba(255, 255, 255, 0.1); /* active state with slight transparency */
+            color: #0f172a;
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
         }
-
 /* ==========================
    MAIN CONTENT
 ========================== */
@@ -93,32 +158,53 @@ body {
     font-size: 20px;
     cursor: pointer;
 }
-
-/* Search bar */
+/* ==========================
+   SEARCH BAR 
+========================== */
 .search {
     position: relative;
     flex: 1; /* takes all available space next to menu icon */
-    max-width: 300px; /* adjust so it doesn't push icons too far */
+    max-width: 400px; /* prevent pushing icons too far */
 }
 
+    /* Input field */
     .search input {
         width: 100%;
-        padding: 10px 35px 10px 14px; /* space for the magnifying glass */
-        background: #0f172a;
-        border: none;
-        border-radius: 8px;
-        color: white;
+        padding: 10px 35px 10px 14px; /* space for magnifying glass */
+        border: 1px solid rgba(255,255,255,0.2); /* subtle outline */
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.05); /* glassy semi-transparent */
+        backdrop-filter: blur(10px); /* frosted glass */
+        -webkit-backdrop-filter: blur(10px); /* Safari support */
+        color: #ffffff; /* text color */
+        transition: all 0.3s ease;
+        font-size: 14px;
     }
+
+        /* Placeholder text */
+        .search input::placeholder {
+            color: rgba(255, 255, 255, 0.6); 
+        }
+
+        /* Hover & focus effect */
+        .search input:hover,
+        .search input:focus {
+            background: rgba(255, 255, 255, 0.12); 
+            border-color: rgba(108, 229, 255, 0.5); 
+            outline: none;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.25); 
+        }
 
 /* Magnifying glass inside search */
 .search-icon {
     position: absolute;
-    right: 10px;
+    right: 12px;
     top: 50%;
     transform: translateY(-50%);
-    color: #94a3b8;
+    color: rgba(255, 255, 255, 0.7); /* slightly faded white */
     pointer-events: none;
 }
+
 
 /* Topbar icons (dark switch, notifications, profile) */
 .top-icons {
@@ -146,7 +232,7 @@ body {
 }
 
     .welcome h1 {
-        color: #7ee7ff;
+        color: rgba(0,0,0,0.3);
         margin-bottom: 6px;
     }
 
@@ -160,32 +246,42 @@ body {
     margin-bottom: 40px;
 }
 
+/* Base card styling */
 .status-card {
-    background: #0b1120;
-    padding: 22px;
+    background: rgba(255, 255, 255, 0.05); /* semi-transparent frosted base */
+    backdrop-filter: blur(10px); /* frosted glass blur */
+    -webkit-backdrop-filter: blur(10px); /* Safari support */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* subtle glass border */
     border-radius: 14px;
-    border: 1px solid #1e293b;
-    transition: 0.3s;
-
+    padding: 22px;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.2); /* soft shadow for floating effect */
 }
 
+    /* Hover effect */
     .status-card:hover {
-        transform: translateY(-4px);
-        border-color: #6ce5ff;
+        transform: translateY(-6px); /* subtle lift */
+        background: rgba(255, 255, 255, 0.12); /* slightly stronger frosted effect */
+        border: 1px solid rgba(255, 255, 255, 0.3); /* more visible outline */
+        box-shadow: 0 12px 32px rgba(0,0,0,0.25); /* deeper shadow */
     }
 
+    /* Icon inside card */
     .status-card i {
         font-size: 24px;
-        color: #6ce5ff;
+        color: #0f172a;
         margin-bottom: 10px;
     }
 
+    /* Title */
     .status-card h3 {
         margin-bottom: 5px;
+        color: white; /* ensure readability */
     }
 
+    /* Description text */
     .status-card p {
-        color: #94a3b8;
+        color: #0f172a; /* slightly lighter gray for readability */
         margin-bottom: 12px;
     }
 
@@ -200,12 +296,16 @@ body {
 }
 
 /* ==========================
-   ROOMS SECTION
+   ZONES OVERVIEW
 ========================== */
+/* Section title */
 .section-title {
     margin-bottom: 20px;
+    color: white;
+    font-weight: 600;
 }
 
+/* Grid layout for rooms */
 .rooms-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -213,29 +313,55 @@ body {
     margin-bottom: 40px;
 }
 
+/* Base room card styling */
 .room-card {
-    background: #0b1120;
-    padding: 20px;
+    background: rgba(255, 255, 255, 0.05); 
+    backdrop-filter: blur(10px); 
+    -webkit-backdrop-filter: blur(10px); 
+    border: 1px solid rgba(255, 255, 255, 0.1); 
     border-radius: 14px;
-    border: 1px solid #1e293b;
-    transition: 0.3s;
-    cursor: pointer;
+    padding: 22px;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.2); 
 }
 
+    /* Hover effect - glass button look */
     .room-card:hover {
-        border-color: #6ce5ff;
-        transform: translateY(-3px);
+        transform: translateY(-6px); /* subtle lift */
+        background: rgba(255, 255, 255, 0.12); /* slightly stronger frosted effect */
+        border: 1px solid rgba(255, 255, 255, 0.3); /* more visible outline */
+        box-shadow: 0 12px 32px rgba(0,0,0,0.25); /* deeper shadow */
     }
 
+    /* Room card title */
     .room-card h3 {
         margin-bottom: 10px;
+        color: white;
     }
 
+    /* Room card description text */
     .room-card p {
-        color: #94a3b8;
+        color: #0b1120; /* light gray for readability */
         margin-bottom: 4px;
     }
+#dashboard .room-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 14px;
+    padding: 20px 22px;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25);
+    transition: 0.3s ease;
+    color: white;
+}
 
+    #dashboard .room-card:hover {
+        transform: translateY(-6px);
+        background: rgba(255, 255, 255, 0.12);
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3);
+    }
 /* ==========================
    ROOMS PAGE
 ========================== */
@@ -272,7 +398,7 @@ body {
 .device-circle {
     width: 60px;
     height: 60px;
-    background: #0b1120;
+    background: #1e293b;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -295,7 +421,7 @@ body {
 .device-label {
     margin-top: 8px;
     text-align: center;
-    color: #94a3b8;
+    color: #0b1120;
     font-size: 14px;
 }
 
@@ -344,7 +470,7 @@ body {
 
 /* Individual room tab - matches room-card style */
 .lighting-room-tab {
-    background: #0b1120;
+    background: #94a3b8;
     padding: 20px;
     border-radius: 14px;
     border: 1px solid #1e293b;
@@ -415,43 +541,58 @@ body {
     display: flex;
     flex-direction: column;
     gap: 15px;
-    background: #0b1120;
+    /* Glass style */
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
     padding: 20px;
-    border-radius: 12px;
-    border: 1px solid #1e293b;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 8px 28px rgba(0,0,0,0.25);
+    transition: 0.3s ease;
 }
-
 /* Power button */
 .light-power-btn {
-    background: #0b1120;
-    border: 1px solid #1e293b;
-    color: #94a3b8;
-    padding: 8px 12px;
-    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    color: white;
+    padding: 10px 14px;
+    border-radius: 10px;
     cursor: pointer;
-    transition: 0.3s;
+    transition: 0.3s ease;
     text-align: center;
+    font-weight: 600;
 }
 
     .light-power-btn:hover {
-        border-color: #6ce5ff;
+        background: rgba(255, 255, 255, 0.15);
+        border-color: rgba(255, 255, 255, 0.35);
         color: #6ce5ff;
+        transform: translateY(-3px);
     }
 
 /* Brightness slider */
 .light-brightness-slider {
-    width: 140px; /* compact width */
+    width: 140px;
+    accent-color: #6ce5ff; /* modern slider color */
 }
-
 /* Color picker */
 input[type="color"] {
     width: 60px;
     height: 40px;
-    border-radius: 8px;
-    border: 1px solid #1e293b;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
     cursor: pointer;
+    transition: 0.3s;
 }
 
+    input[type="color"]:hover {
+        background: rgba(255, 255, 255, 0.2);
+        border-color: rgba(255, 255, 255, 0.35);
+    }
 /* Additional lighting icon style if needed */
 .lighting-icon {
     font-size: 24px;
@@ -642,58 +783,81 @@ VENTILATION CONTROL SECTION
 
 /* ENERGY PANEL */
 .energy-panel {
-    background: #0b1120;
-    padding: 22px;
+    background: rgba(255, 255, 255, 0.12); /* frosted glass base */
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 14px;
-    border: 1px solid #1e293b;
+    padding: 22px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.25); /* floating effect */
+    transition: all 0.3s ease;
 }
+
+    /* Hover effect */
+    .energy-panel:hover {
+        transform: translateY(-4px); /* subtle lift */
+        background: rgba(255, 255, 255, 0.18); /* stronger glass on hover */
+        border: 1px solid rgba(255, 255, 255, 0.35); /* stronger outline */
+        box-shadow: 0 12px 36px rgba(0,0,0,0.3); /* deeper shadow */
+    }
 
     .energy-panel h3 {
         margin-bottom: 10px;
+        color: #0b1120;
     }
 
 .energy-today {
     margin-bottom: 20px;
-    color: #94a3b8;
+    color: #1e293b;
 }
 
 .energy-graph {
     height: 200px;
-    background: #020617;
+    background: rgba(255, 255, 255, 0.05); /* subtle frosted inner box */
     border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #64748b;
+    color: #2c3e50;
     margin-bottom: 20px;
-}
-
-.energy-info p {
-    margin-bottom: 6px;
-    color: #94a3b8;
 }
 
 /* SETTINGS PANEL */
 .settings-panel {
-    background: #0b1120;
-    padding: 22px;
+    background: rgba(255, 255, 255, 0.12); /* frosted glass base */
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 14px;
-    border: 1px solid #1e293b;
+    padding: 22px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+    transition: all 0.3s ease;
 }
+
+    .settings-panel:hover {
+        transform: translateY(-4px);
+        background: rgba(255, 255, 255, 0.18);
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        box-shadow: 0 12px 36px rgba(0,0,0,0.3);
+    }
 
     .settings-panel h3 {
         margin-bottom: 14px;
+        color: #0b1120;
     }
 
     .settings-panel ul {
         list-style: none;
+        padding: 0;
+        margin: 0;
     }
 
     .settings-panel li {
         padding: 10px 0;
-        border-bottom: 1px solid #1e293b;
-        color: #94a3b8;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        color: #141d33; 
         cursor: pointer;
+        transition: all 0.3s ease;
     }
 
         .settings-panel li:last-child {
@@ -701,9 +865,8 @@ VENTILATION CONTROL SECTION
         }
 
         .settings-panel li:hover {
-            color: #6ce5ff;
+            color: rgba(0,0,0,0.2); /* accent color on hover */
         }
-
 /* ==========================
    MODAL
 ========================== */
@@ -923,37 +1086,52 @@ input[type=range] {
     margin-bottom: 20px;
 }
 
+/* Base tab styling */
 .room-tab {
     flex: 1;
     min-width: 100px;
-    background: #0f172a;
-    color: #333;
+    background: rgba(255, 255, 255, 0.05); /* frosted glass base */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    color: #e0e0e0; /* light gray text */
     padding: 10px 15px;
     text-align: center;
-    border-radius: 8px;
-    cursor: pointer;
     font-weight: 600;
-    transition: background 0.2s, color 0.2s;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15); /* subtle floating effect */
 }
 
-    .room-tab.active {
-        background: #6ce5ff;
-        color: #0f172a;
-    }
-
+    /* Hover effect */
     .room-tab:hover {
-        background: #94a3b8;
-        color: #0f172a;
+        background: rgba(108, 229, 255, 0.2); /* soft accent frosted */
+        color: white;
+        border: 1px solid rgba(108, 229, 255, 0.3);
+        box-shadow: 0 6px 20px rgba(0,0,0,0.2);
     }
 
+    /* Active tab */
+    .room-tab.active {
+        background: rgba(108, 229, 255, 0.3); /* stronger accent */
+        color: white;
+        border: 1px solid rgba(108, 229, 255, 0.4);
+        box-shadow: 0 6px 24px rgba(0,0,0,0.25);
+    }
 /* Room Controls */
 .room-controls-container {
-    background: #0f172a;
-    padding: 20px;
+    background: rgba(255, 255, 255, 0.08); /* frosted glass base */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    padding: 20px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.2); /* subtle floating effect */
+    transition: all 0.3s ease;
 }
 
+/* Room Controls wrapper */
 .room-controls {
     display: block;
 }
@@ -969,36 +1147,53 @@ input[type=range] {
 }
 
 /* Device Buttons */
-.device-btn.on {
-    background: #4CAF50;
-    color: white;
-}
-
-.device-btn.off {
-    background: #f44336;
-    color: white;
-}
-
-.device-btn.auto {
-    background: #FFC107;
-    color: white;
-}
-
-.add-device-btn {
-    background: #0f172a;
-    color: white;
+.device-btn {
     border: none;
-    padding: 6px 12px;
-    border-radius: 6px;
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-weight: 600;
     cursor: pointer;
+    transition: all 0.3s ease;
+    color: white;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15); /* floating effect */
+}
+
+    /* On, Off, Auto states */
+    .device-btn.on {
+        background: rgba(76, 175, 80, 0.85); /* semi-transparent green */
+    }
+
+    .device-btn.off {
+        background: rgba(244, 67, 54, 0.85); /* semi-transparent red */
+    }
+
+    .device-btn.auto {
+        background: rgba(255, 193, 7, 0.85); /* semi-transparent yellow */
+    }
+
+/* Add Device Button */
+.add-device-btn {
+    background: rgba(255, 255, 255, 0.05); /* glassy base */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    color: #e0e0e0;
+    padding: 6px 12px;
     font-size: 14px;
     display: inline-flex;
     align-items: center;
     gap: 5px;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    transition: all 0.3s ease;
 }
 
     .add-device-btn:hover {
-        background: #1e293b;
+        background: rgba(108, 229, 255, 0.2); /* frosted accent hover */
+        border: 1px solid rgba(108, 229, 255, 0.3);
+        color: white;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.2);
     }
 /* Collapsed sidebar */
 .sidebar {
