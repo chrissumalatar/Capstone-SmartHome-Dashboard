@@ -1,4 +1,4 @@
-﻿document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {
 
     // ===============================
     // SIDEBAR TOGGLE
@@ -58,8 +58,8 @@
         ventilation: document.getElementById("ventilation"),
         aircon: document.getElementById("aircon"),
         sensor: document.getElementById("sensor"),
-        water: document.getElementById("water"),
-        energy: document.getElementById("energy"),
+        curtain: document.getElementById("curtain"),
+        power: document.getElementById("power"),
         settings: document.getElementById("settings")
     };
 
@@ -224,70 +224,237 @@
         });
     }
     // ===============================
+    // VENTILATION DIAL CONTROL
+    // ===============================
+
+    // Get elements
+    const ventDial = document.getElementById('ventDial');
+    const ventDialValue = document.getElementById('ventDialValue');
+    const targetTempSlider = document.getElementById('targetTemp');
+    const ventPower = document.getElementById('vent-power');
+    const ventStateSelect = document.getElementById('ventState');
+    const dialTicks = document.getElementById('dialTicks');
+
+    // State
+    let ventValue = parseInt(targetTempSlider.value);
+    let ventState = ventStateSelect.value;
+
+    // ===============================
+    // CREATE TICKS (RUN ONCE)
+    // ===============================
+    function createTicks() {
+        const totalTicks = 30;
+        const radius = 130;
+
+        for (let i = 0; i < totalTicks; i++) {
+            const angle = (i / totalTicks) * 270 - 135;
+            const rad = angle * (Math.PI / 180);
+
+            const x1 = 150 + Math.cos(rad) * (radius - 10);
+            const y1 = 150 + Math.sin(rad) * (radius - 10);
+            const x2 = 150 + Math.cos(rad) * radius;
+            const y2 = 150 + Math.sin(rad) * radius;
+
+            const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+
+            line.setAttribute("x1", x1);
+            line.setAttribute("y1", y1);
+            line.setAttribute("x2", x2);
+            line.setAttribute("y2", y2);
+
+            // Bigger tick every 5
+            if (i % 5 === 0) {
+                line.setAttribute("stroke-width", "3");
+            } else {
+                line.setAttribute("stroke-width", "1.5");
+            }
+
+            dialTicks.appendChild(line);
+        }
+    }
+
+    // Run once
+    createTicks();
+
+    // ===============================
+    // UPDATE DIAL
+    // ===============================
+    function updateDial(value) {
+        ventDialValue.innerText = value;
+
+        const angle = ((value - 16) / (30 - 16)) * 270;
+        ventDial.style.setProperty('--angle', angle + 'deg');
+
+        ventDial.classList.remove('state-off', 'state-cooling', 'state-heating');
+
+        if (ventState === 'off') {
+            ventDial.classList.add('state-off');
+        } else if (ventState === 'cooling') {
+            ventDial.classList.add('state-cooling');
+        } else if (ventState === 'heating') {
+            ventDial.classList.add('state-heating');
+        }
+
+        // ===============================
+        // TICK HIGHLIGHTING
+        // ===============================
+        const ticks = dialTicks.querySelectorAll('line');
+
+        const threshold = (value - 16) / (30 - 16) * ticks.length;
+
+        ticks.forEach((tick, i) => {
+            tick.style.transition = 'all 0.2s ease';
+
+            if (i < threshold) {
+                tick.style.stroke = ventState === 'heating' ? '#ff8c42' : '#6ce5ff';
+                tick.style.opacity = 1;
+            } else {
+                tick.style.stroke = 'rgba(255,255,255,0.2)';
+                tick.style.opacity = 0.3;
+            }
+        });
+    }
+
+    // Initialize
+    updateDial(ventValue);
+
+    // ===============================
+    // DRAG CONTROL
+    // ===============================
+    let isDragging = false;
+
+    ventDial.addEventListener('mousedown', () => isDragging = true);
+    document.addEventListener('mouseup', () => isDragging = false);
+
+    document.addEventListener('mousemove', e => {
+        if (!isDragging) return;
+
+        const rect = ventDial.getBoundingClientRect();
+        const x = e.clientX - (rect.left + rect.width / 2);
+        const y = e.clientY - (rect.top + rect.height / 2);
+
+        let deg = Math.atan2(y, x) * (180 / Math.PI);
+        deg = deg + 135;
+
+        if (deg < 0) deg = 0;
+        if (deg > 270) deg = 270;
+
+        const value = Math.round(deg / 270 * 14 + 16);
+
+        ventValue = value;
+        targetTempSlider.value = value;
+
+        updateDial(ventValue);
+    });
+
+    // ===============================
+    // SLIDER SYNC
+    // ===============================
+    targetTempSlider.addEventListener('input', () => {
+        ventValue = parseInt(targetTempSlider.value);
+        updateDial(ventValue);
+    });
+
+    // ===============================
+    // POWER SWITCH
+    // ===============================
+    ventPower.addEventListener('change', () => {
+        if (ventPower.checked) {
+            if (ventStateSelect.value === 'off') {
+                ventStateSelect.value = 'cooling';
+            }
+        } else {
+            ventStateSelect.value = 'off';
+        }
+
+        ventState = ventStateSelect.value;
+        updateDial(ventValue);
+    });
+
+    // ===============================
+    // STATE CHANGE
+    // ===============================
+    ventStateSelect.addEventListener('change', () => {
+        ventState = ventStateSelect.value;
+
+        // Sync toggle
+        ventPower.checked = ventState !== 'off';
+
+        updateDial(ventValue);
+    });
+    // ===============================
     // AIRCON CONTROL PAGE JS
     // ===============================
-    const airconPage = document.getElementById('aircon');
-    if (airconPage) {
-        const airconTabs = airconPage.querySelectorAll('.aircon-room-tabs .room-tab');
-        const airconControls = airconPage.querySelectorAll('.aircon-controls');
+    const acContainer = document.getElementById('living-aircon');
 
-        // Function to show selected room
-        function showAirconRoom(roomId) {
-            airconControls.forEach(control => control.style.display = 'none');
-            const selected = document.getElementById(roomId);
-            if (selected) selected.style.display = 'flex';
+    const acPower = acContainer.querySelector('#ac-power');
+    const tempUpBtn = acContainer.querySelector('#temp-up');
+    const tempDownBtn = acContainer.querySelector('#temp-down');
+    const tempValue = acContainer.querySelector('#temp-value');
+    const tempDisplay = acContainer.querySelector('#temp-display');
+    const acIcon = acContainer.querySelector('#ac-icon');
+
+    // Initialize AC state
+    let acOn = false;
+    let temperature = 24;
+
+    acPower.addEventListener('change', function () {
+        acOn = this.checked;
+        updateAC();
+        updateCardStatus('ac', acOn);
+    });
+
+    tempUpBtn.addEventListener('click', function () {
+        if (temperature < 30) {
+            temperature++;
+            updateTemperature();
         }
+    });
 
-        // Initialize first tab
-        if (airconTabs.length > 0) {
-            const firstRoomId = airconTabs[0].dataset.room;
-            airconTabs[0].classList.add('active');
-            showAirconRoom(firstRoomId);
+    tempDownBtn.addEventListener('click', function () {
+        if (temperature > 16) {
+            temperature--;
+            updateTemperature();
         }
+    });
 
-        // Tab click event
-        airconTabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                airconTabs.forEach(t => t.classList.remove('active'));
-                tab.classList.add('active');
-                showAirconRoom(tab.dataset.room);
-            });
-        });
+    function updateTemperature() {
+        tempValue.textContent = temperature;
+        tempDisplay.textContent = `${temperature}°C`;
+    }
 
-        // AC power buttons
-        const acButtons = airconPage.querySelectorAll('.ac-power-btn');
-        acButtons.forEach(btn => {
-            btn.addEventListener('click', () => {
-                if (btn.innerText === 'OFF') {
-                    btn.innerText = 'ON';
-                    btn.style.background = '#22c55e';
-                    btn.style.color = 'white';
-                } else {
-                    btn.innerText = 'OFF';
-                    btn.style.background = '#ef4444';
-                    btn.style.color = 'white';
+    function updateAC() {
+        if (acOn) {
+            acContainer.classList.add('aircon-on'); // ✅ ADD THIS
+
+            acIcon.style.animation = 'ac-cooling 2s ease-in-out infinite';
+            acIcon.style.opacity = 1;
+        } else {
+            acContainer.classList.remove('aircon-on'); // ✅ AND THIS
+
+            acIcon.style.animation = 'none';
+            acIcon.style.opacity = 0.3;
+        }
+    }
+    // POWER TAB SWITCHING
+    const powerTabs = document.querySelectorAll(".power-room-tabs .room-tab");
+    const powerPanels = document.querySelectorAll(".power-panel");
+
+    powerTabs.forEach(tab => {
+        tab.addEventListener("click", () => {
+            const room = tab.getAttribute("data-room");
+
+            powerTabs.forEach(t => t.classList.remove("active"));
+            tab.classList.add("active");
+
+            powerPanels.forEach(panel => {
+                panel.classList.remove("active");
+                if (panel.id === room) {
+                    panel.classList.add("active");
                 }
             });
         });
-
-        // Temperature sliders
-        const tempSliders = airconPage.querySelectorAll('.ac-temp-slider');
-        tempSliders.forEach(slider => {
-            slider.addEventListener('input', () => {
-                const valueLabel = slider.previousElementSibling.querySelector('.ac-temp-value');
-                if (valueLabel) valueLabel.innerText = slider.value + '°C';
-            });
-        });
-
-        // Mode selector (optional: just for display)
-        const modeSelects = airconPage.querySelectorAll('.ac-mode-select');
-        modeSelects.forEach(select => {
-            select.addEventListener('change', () => {
-                // You can handle mode change logic here if needed
-                console.log(`AC mode set to: ${select.value}`);
-            });
-        });
-    }
+    });
     // ===============================
     // DARK / LIGHT MODE SWITCH
     // ===============================
@@ -346,4 +513,49 @@
         }
     });
 
+});
+// ===============================
+// UNIVERSAL ROOM TAB SYSTEM
+// ===============================
+const roomTabs = document.querySelectorAll('.room-tab');
+
+function showRoom(roomId) {
+    // hide EVERYTHING that could be a panel
+    const allPanels = document.querySelectorAll(
+        '.room-controls, .lighting-controls, .light-control-container, .ventilation-controls, .aircon-controls, .sensor-panel, .curtain-panel, .power-panel'
+    );
+
+    allPanels.forEach(panel => panel.style.display = 'none');
+
+    // show selected
+    const selected = document.getElementById(roomId);
+    if (selected) {
+        // detect correct display type
+        if (selected.classList.contains('room-controls') ||
+            selected.classList.contains('ventilation-controls') ||
+            selected.classList.contains('aircon-controls')) {
+            selected.style.display = 'flex';
+        } else {
+            selected.style.display = 'block';
+        }
+    }
+}
+
+// activate default tab per page
+document.querySelectorAll('.room-tabs').forEach(tabGroup => {
+    const tabs = tabGroup.querySelectorAll('.room-tab');
+
+    if (tabs.length > 0) {
+        tabs.forEach(t => t.classList.remove('active'));
+        tabs[0].classList.add('active');
+        showRoom(tabs[0].dataset.room);
+    }
+
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            tabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            showRoom(tab.dataset.room);
+        });
+    });
 });
