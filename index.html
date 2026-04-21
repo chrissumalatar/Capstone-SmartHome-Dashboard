@@ -11,30 +11,33 @@
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 </head>
 <body>
+
     <!-- Full dashboard container -->
     <div class="dashboard-container">
 
         <!-- SIDEBAR -->
         <div class="sidebar">
-            <div class="logo">Smart<span>Home</span></div>
-            <ul class="nav-links">
-                <li class="active" data-page="dashboard"><i class="fa-solid fa-house"></i> Dashboard</li>
-                <li data-page="rooms"><i class="fa-solid fa-bed"></i> Rooms</li>
-                <li data-page="lighting"><i class="fa-solid fa-lightbulb"></i> Lighting Control</li>
-<<<<<<< HEAD
-                <li data-page="ventilation"><i class="fa-solid fa-fan"></i> Thermostat Control</li>
-                <li data-page="aircon"><i class="fa-solid fa-snowflake"></i> Aircon Control</li>
-                <li data-page="sensor"><i class="fa-solid fa-wave-square"></i> Sensor Monitoring</li>
-                <li data-page="curtain"><i class="fas fa-dungeon"></i> Curtain Control</li>
-                <li data-page="power"><i class="fa-solid fa-bolt"></i> Power Management</li>
-=======
-                <li data-page="ventilation"><i class="fa-solid fa-fan"></i> Ventilation Control</li>
-                <li data-page="aircon"><i class="fa-solid fa-snowflake"></i> Aircon Control</li>
-                <li data-page="sensor"><i class="fa-solid fa-wave-square"></i> Sensor Monitoring</li>
-                <li data-page="water"><i class="fa-solid fa-water"></i> Water Systems</li>
-                <li data-page="energy"><i class="fa-solid fa-bolt"></i> Energy and Power</li>
->>>>>>> 292163d74053dc216bede6e49c2fc3c1520707b4
+            <div>
+                <div class="logo">SmartHome</div>
+
+                <!-- TOP MENU -->
+                <ul class="nav-links">
+                    <li class="active" data-page="dashboard"><i class="fa-solid fa-house"></i> Overview</li>
+                    <li data-page="rooms"><i class="fa-solid fa-bed"></i> Rooms</li>
+                    <li data-page="lighting"><i class="fa-solid fa-lightbulb"></i> Lighting Control</li>
+                    <li data-page="ventilation"><i class="fa-solid fa-fan"></i> Thermostat Control</li>
+                    <li data-page="aircon"><i class="fa-solid fa-snowflake"></i> Aircon Control</li>
+                    <li data-page="sensor"><i class="fa-solid fa-wave-square"></i> Sensor Monitoring</li>
+                    <li data-page="building-parts"><i class="fa-solid fa-layer-group"></i> Building Parts</li>
+                    <li data-page="controls-page"><i class="fa-solid fa-sliders"></i> Controls</li>
+                    <li data-page="readings-page"><i class="fa-solid fa-file-lines"></i> Readings</li>
+                </ul>
+            </div>
+
+            <!-- BOTTOM MENU -->
+            <ul class="nav-links bottom-menu">
                 <li data-page="settings"><i class="fa-solid fa-gear"></i> Settings</li>
+                <li><i class="fa-solid fa-right-from-bracket"></i> Log Out</li>
             </ul>
         </div>
 
@@ -120,23 +123,21 @@
                 </div>
             </div>
 
-            <!-- DASHBOARD SECTIONS -->
+            <!-- DASHBOARD PAGE -->
             <div id="dashboard">
                 <div class="welcome">
-                    <h1>Welcome, Chris!</h1>
-                    <p>Smart home system status overview</p>
-<<<<<<< HEAD
-
-                    <div id="current-datetime"></div>
+                    <div class="welcome-left">
+                        <h1>Overview</h1>
+                        <div class="welcome-meta">
+                            <span id="current-datetime"></span>
+                        </div>
+                    </div>
                 </div>
 
-=======
-                </div>
-
->>>>>>> 292163d74053dc216bede6e49c2fc3c1520707b4
                 <div class="status-grid">
                     <div class="status-card">
-                        <i class="fa-solid fa-lightbulb"></i><h3>Lights On</h3>
+                        <i class="fa-solid fa-lightbulb"></i>
+                        <h3>Lights On</h3>
                         <p>5 / 12 Active</p>
                         <button class="toggle">ON</button>
                     </div>
@@ -184,7 +185,6 @@
                             <li>User Profile Settings</li>
                             <li>Device Pairing</li>
                             <li>Automation Rules</li>
-                            <li>Test</li>
                             <li>Theme: Light / Dark</li>
                         </ul>
                     </div>
@@ -429,7 +429,6 @@
                             <button class="add-device-btn"><i class="fa-solid fa-plus"></i> Add Device</button>
                         </div>
                     </div>
-
                 </div>
             </div>
 
@@ -450,35 +449,34 @@
 
                 <!-- Lighting Controls Container -->
                 <div class="lighting-controls-container">
-
                     <!-- Living Room Light Control -->
-                    <div class="light-control-container" id="living-light-control">
-                        <!-- Left: Big Bulb -->
-                        <div class="light-bulb">
-                            <i id="bulb-icon" class="fas fa-lightbulb"></i>
-                        </div>
+                    <div class="lighting-controls" id="living-light" style="display:flex;">
+                        <div class="lighting-main">
 
-                        <!-- Right: Vertical Controls -->
-                        <div class="light-controls controls">
-                            <div class="control-group">
-<<<<<<< HEAD
-                                <label for="light-power">Power</label> <br />
-=======
-                                <label for="light-power">Power</label>
->>>>>>> 292163d74053dc216bede6e49c2fc3c1520707b4
+                            <!-- LEFT: ICON -->
+                            <div class="lighting-visual">
+                                <i class="fas fa-lightbulb" id="living-bulb-icon"></i>
+                                <p class="device-label"></p>
+                            </div>
+
+                            <!-- RIGHT: GLASS CARD -->
+                            <div class="lighting-card">
+                                <label>Power</label>
                                 <label class="switch">
-                                    <input type="checkbox" id="light-power">
-                                    <span class="slider round"></span>
+                                    <input type="checkbox" id="living-light-power">
+                                    <span class="slider"></span>
                                 </label>
-                            </div>
-                            <div class="control-group">
-                                <label for="brightness-slider">Brightness</label>
-                                <input type="range" min="0" max="100" value="60" class="slider-control compact-slider" id="brightness-slider">
-                                <span id="brightness-value">60</span>%
-                            </div>
-                            <div class="control-group">
-                                <label for="color-picker">Color</label>
-                                <input type="color" id="color-picker" value="#ffff00">
+
+                                <div style="display:flex; flex-direction:column; gap:6px;">
+                                    <label for="living-brightness-slider">Brightness</label>
+                                    <input type="range" min="0" max="100" value="60" id="living-brightness-slider">
+                                    <span id="living-brightness-value">60</span>
+                                </div>
+
+                                <div style="display:flex; flex-direction:column; gap:6px;">
+                                    <label for="living-color-picker">Color</label>
+                                    <input type="color" id="living-color-picker" value="#ffff00">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -537,33 +535,30 @@
                     <div class="lighting-controls" id="balcony-light" style="display: none;">
                         <div class="control-container">
                             <div class="device-icon">
-                                <i class="fas fa-lightbulb" id="bulb-icon"></i>
+                                <i class="fas fa-lightbulb" id="balcony-bulb-icon"></i>
                             </div>
                             <div class="controls">
                                 <div class="control-group">
-                                    <label>Power</label>
+                                    <label for="balcony-light-power">Power</label>
                                     <label class="switch">
-                                        <input type="checkbox" id="light-power">
+                                        <input type="checkbox" id="balcony-light-power">
                                         <span class="slider round"></span>
                                     </label>
                                 </div>
                                 <div class="control-group">
-                                    <label>Brightness: <span id="brightness-value">50</span>%</label>
-                                    <input type="range" min="0" max="100" value="50" class="slider-control" id="brightness-slider">
+                                    <label for="balcony-brightness-slider">Brightness: <span id="balcony-brightness-value">50</span>%</label>
+                                    <input type="range" min="0" max="100" value="50" class="slider-control" id="balcony-brightness-slider">
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
 
-                </div> <!-- end lighting-controls-container -->
-            </div> <!-- end lighting page -->
             <!-- VENTILATION CONTROL PAGE -->
             <div class="page" id="ventilation" style="display: none;">
-<<<<<<< HEAD
                 <h2 class="page-title">Thermostat Control</h2>
-=======
                 <h2 class="page-title">Ventilation Control</h2>
->>>>>>> 292163d74053dc216bede6e49c2fc3c1520707b4
 
                 <!-- Room Tabs -->
                 <div class="room-tabs ventilation-room-tabs">
@@ -576,7 +571,6 @@
                     <div class="room-tab" data-room="balcony-ventilation">Balcony</div>
                 </div>
 
-<<<<<<< HEAD
                 <!-- Thermostat Controls Container -->
                 <div class="ventilation-controls-container">
 
@@ -620,84 +614,62 @@
                                 <input type="number" id="ambientTemp" min="16" max="36" value="24">
                             </label>
                         </div>
-=======
-                <!-- Ventilation Controls Container -->
-                <div class="ventilation-controls-container">
-                    <!-- Living Room Ventilation -->
-                    <div class="ventilation-controls" id="living-ventilation" style="display:flex;">
-                        <div class="device-row">
-                            <div class="device-item">
-                                <div class="device-circle fan-control" data-device-id="living-vent-1" data-current-speed="0">
-                                    <i class="fas fa-fan device-icon"></i>
-                                    <div class="fan-speed-indicator">
-                                        <span class="speed-dot" data-speed="1"></span>
-                                        <span class="speed-dot" data-speed="2"></span>
-                                        <span class="speed-dot" data-speed="3"></span>
-                                        <span class="speed-dot" data-speed="4"></span>
-                                        <span class="speed-dot" data-speed="5"></span>
-                                    </div>
-                                </div>
-                                <p class="device-label">Ventilation Fan</p>
-                            </div>
-                        </div>
->>>>>>> 292163d74053dc216bede6e49c2fc3c1520707b4
-                    </div>
-
-                    <!-- Bedroom 1 Ventilation -->
-                    <div class="ventilation-controls" id="bed1-ventilation" style="display: none;">
-                        <div class="ventilation-settings">
-                            <button class="vent-power-btn">OFF</button>
-                            <label>Speed: <span class="speed-value">0</span></label>
-                            <input type="range" min="0" max="5" value="0" class="vent-speed-slider">
-                        </div>
-                    </div>
-
-                    <!-- Bedroom 2 Ventilation -->
-                    <div class="ventilation-controls" id="bed2-ventilation" style="display: none;">
-                        <div class="ventilation-settings">
-                            <button class="vent-power-btn">OFF</button>
-                            <label>Speed: <span class="speed-value">0</span></label>
-                            <input type="range" min="0" max="5" value="0" class="vent-speed-slider">
-                        </div>
-                    </div>
-
-                    <!-- Kitchen Ventilation -->
-                    <div class="ventilation-controls" id="kitchen-ventilation" style="display: none;">
-                        <div class="ventilation-settings">
-                            <button class="vent-power-btn">OFF</button>
-                            <label>Speed: <span class="speed-value">0</span></label>
-                            <input type="range" min="0" max="5" value="0" class="vent-speed-slider">
-                        </div>
-                    </div>
-
-                    <!-- Bathroom Ventilation -->
-                    <div class="ventilation-controls" id="bath-ventilation" style="display: none;">
-                        <div class="ventilation-settings">
-                            <button class="vent-power-btn">OFF</button>
-                            <label>Speed: <span class="speed-value">0</span></label>
-                            <input type="range" min="0" max="5" value="0" class="vent-speed-slider">
-                        </div>
-                    </div>
-
-                    <!-- Garage Ventilation -->
-                    <div class="ventilation-controls" id="garage-ventilation" style="display: none;">
-                        <div class="ventilation-settings">
-                            <button class="vent-power-btn">OFF</button>
-                            <label>Speed: <span class="speed-value">0</span></label>
-                            <input type="range" min="0" max="5" value="0" class="vent-speed-slider">
-                        </div>
-                    </div>
-
-                    <!-- Balcony Ventilation -->
-                    <div class="ventilation-controls" id="balcony-ventilation" style="display: none;">
-                        <div class="ventilation-settings">
-                            <button class="vent-power-btn">OFF</button>
-                            <label>Speed: <span class="speed-value">0</span></label>
-                            <input type="range" min="0" max="5" value="0" class="vent-speed-slider">
-                        </div>
                     </div>
                 </div>
-<<<<<<< HEAD
+            </div>
+
+            <!-- Bedroom 1 Ventilation -->
+            <div class="ventilation-controls" id="bed1-ventilation" style="display: none;">
+                <div class="ventilation-settings">
+                    <button class="vent-power-btn">OFF</button>
+                    <label>Speed: <span class="speed-value">0</span></label>
+                    <input type="range" min="0" max="5" value="0" class="vent-speed-slider">
+                </div>
+            </div>
+
+            <!-- Bedroom 2 Ventilation -->
+            <div class="ventilation-controls" id="bed2-ventilation" style="display: none;">
+                <div class="ventilation-settings">
+                    <button class="vent-power-btn">OFF</button>
+                    <label>Speed: <span class="speed-value">0</span></label>
+                    <input type="range" min="0" max="5" value="0" class="vent-speed-slider">
+                </div>
+            </div>
+
+            <!-- Kitchen Ventilation -->
+            <div class="ventilation-controls" id="kitchen-ventilation" style="display: none;">
+                <div class="ventilation-settings">
+                    <button class="vent-power-btn">OFF</button>
+                    <label>Speed: <span class="speed-value">0</span></label>
+                    <input type="range" min="0" max="5" value="0" class="vent-speed-slider">
+                </div>
+            </div>
+
+            <!-- Bathroom Ventilation -->
+            <div class="ventilation-controls" id="bath-ventilation" style="display: none;">
+                <div class="ventilation-settings">
+                    <button class="vent-power-btn">OFF</button>
+                    <label>Speed: <span class="speed-value">0</span></label>
+                    <input type="range" min="0" max="5" value="0" class="vent-speed-slider">
+                </div>
+            </div>
+
+            <!-- Garage Ventilation -->
+            <div class="ventilation-controls" id="garage-ventilation" style="display: none;">
+                <div class="ventilation-settings">
+                    <button class="vent-power-btn">OFF</button>
+                    <label>Speed: <span class="speed-value">0</span></label>
+                    <input type="range" min="0" max="5" value="0" class="vent-speed-slider">
+                </div>
+            </div>
+
+            <!-- Balcony Ventilation -->
+            <div class="ventilation-controls" id="balcony-ventilation" style="display: none;">
+                <div class="ventilation-settings">
+                    <button class="vent-power-btn">OFF</button>
+                    <label>Speed: <span class="speed-value">0</span></label>
+                    <input type="range" min="0" max="5" value="0" class="vent-speed-slider">
+                </div>
             </div>
 
             <!-- AIRCON CONTROL PAGE -->
@@ -720,7 +692,6 @@
 
                     <!-- Living Room AC -->
                     <div class="aircon-controls" id="living-aircon" style="display:flex;">
-
                         <div class="aircon-main">
 
                             <!-- LEFT: ICON -->
@@ -731,197 +702,17 @@
 
                             <!-- RIGHT: GLASS CARD -->
                             <div class="aircon-card">
-
-                                <!-- POWER (toggle switch-->
                                 <label>Power</label>
                                 <label class="switch">
                                     <input type="checkbox" id="ac-power">
                                     <span class="slider"></span>
                                 </label>
 
-
-                                <!-- TEMP CONTROLS -->
                                 <div style="display:flex; gap:10px; align-items:center;">
                                     <button id="temp-down">−</button>
                                     <span id="temp-value">24</span>
                                     <button id="temp-up">+</button>
                                 </div>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-            <!-- Bedroom 1 AC -->
-            <div class="aircon-controls" id="bed1-aircon" style="display: none;">
-                <div class="device-item">
-                    <div class="device-circle ac-control" data-device-id="bed1-ac-1">
-                        <i class="fas fa-snowflake device-icon"></i>
-                    </div>
-                    <p class="device-label">Air Conditioner</p>
-                    <div class="ac-settings">
-                        <button class="ac-power-btn">OFF</button>
-                        <label>Temperature: <span class="ac-temp-value">22°C</span></label>
-                        <input type="range" min="16" max="30" value="22" class="ac-temp-slider">
-                        <label>Mode:</label>
-                        <select class="ac-mode-select">
-                            <option value="cool">Cool</option>
-                            <option value="heat">Heat</option>
-                            <option value="fan">Fan</option>
-                            <option value="dry">Dry</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Bedroom 2 AC -->
-            <div class="aircon-controls" id="bed2-aircon" style="display: none;">
-                <div class="device-item">
-                    <div class="device-circle ac-control" data-device-id="bed2-ac-1">
-                        <i class="fas fa-snowflake device-icon"></i>
-                    </div>
-                    <p class="device-label">Air Conditioner</p>
-                    <div class="ac-settings">
-                        <button class="ac-power-btn">OFF</button>
-                        <label>Temperature: <span class="ac-temp-value">22°C</span></label>
-                        <input type="range" min="16" max="30" value="22" class="ac-temp-slider">
-                        <label>Mode:</label>
-                        <select class="ac-mode-select">
-                            <option value="cool">Cool</option>
-                            <option value="heat">Heat</option>
-                            <option value="fan">Fan</option>
-                            <option value="dry">Dry</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Kitchen AC -->
-            <div class="aircon-controls" id="kitchen-aircon" style="display: none;">
-                <div class="device-item">
-                    <div class="device-circle ac-control" data-device-id="kitchen-ac-1">
-                        <i class="fas fa-snowflake device-icon"></i>
-                    </div>
-                    <p class="device-label">Air Conditioner</p>
-                    <div class="ac-settings">
-                        <button class="ac-power-btn">OFF</button>
-                        <label>Temperature: <span class="ac-temp-value">24°C</span></label>
-                        <input type="range" min="16" max="30" value="24" class="ac-temp-slider">
-                        <label>Mode:</label>
-                        <select class="ac-mode-select">
-                            <option value="cool">Cool</option>
-                            <option value="heat">Heat</option>
-                            <option value="fan">Fan</option>
-                            <option value="dry">Dry</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Bathroom AC -->
-            <div class="aircon-controls" id="bath-aircon" style="display: none;">
-                <div class="device-item">
-                    <div class="device-circle ac-control" data-device-id="bath-ac-1">
-                        <i class="fas fa-snowflake device-icon"></i>
-                    </div>
-                    <p class="device-label">Air Conditioner</p>
-                    <div class="ac-settings">
-                        <button class="ac-power-btn">OFF</button>
-                        <label>Temperature: <span class="ac-temp-value">24°C</span></label>
-                        <input type="range" min="16" max="30" value="24" class="ac-temp-slider">
-                        <label>Mode:</label>
-                        <select class="ac-mode-select">
-                            <option value="cool">Cool</option>
-                            <option value="heat">Heat</option>
-                            <option value="fan">Fan</option>
-                            <option value="dry">Dry</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Garage AC -->
-            <div class="aircon-controls" id="garage-aircon" style="display: none;">
-                <div class="device-item">
-                    <div class="device-circle ac-control" data-device-id="garage-ac-1">
-                        <i class="fas fa-snowflake device-icon"></i>
-                    </div>
-                    <p class="device-label">Air Conditioner</p>
-                    <div class="ac-settings">
-                        <button class="ac-power-btn">OFF</button>
-                        <label>Temperature: <span class="ac-temp-value">24°C</span></label>
-                        <input type="range" min="16" max="30" value="24" class="ac-temp-slider">
-                        <label>Mode:</label>
-                        <select class="ac-mode-select">
-                            <option value="cool">Cool</option>
-                            <option value="heat">Heat</option>
-                            <option value="fan">Fan</option>
-                            <option value="dry">Dry</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Balcony AC -->
-            <div class="aircon-controls" id="balcony-aircon" style="display: none;">
-                <div class="device-item">
-                    <div class="device-circle ac-control" data-device-id="balcony-ac-1">
-                        <i class="fas fa-snowflake device-icon"></i>
-                    </div>
-                    <p class="device-label">Air Conditioner</p>
-                    <div class="ac-settings">
-                        <button class="ac-power-btn">OFF</button>
-                        <label>Temperature: <span class="ac-temp-value">24°C</span></label>
-                        <input type="range" min="16" max="30" value="24" class="ac-temp-slider">
-                        <label>Mode:</label>
-                        <select class="ac-mode-select">
-                            <option value="cool">Cool</option>
-                            <option value="heat">Heat</option>
-                            <option value="fan">Fan</option>
-                            <option value="dry">Dry</option>
-                        </select>
-=======
-            </div>
-
-            <!-- AIRCON CONTROL PAGE -->
-            <div class="page" id="aircon" style="display: none;">
-                <h2 class="page-title">Air Conditioning Control</h2>
-
-                <!-- Room Tabs -->
-                <div class="room-tabs aircon-room-tabs">
-                    <div class="room-tab active" data-room="living-aircon">Living Room</div>
-                    <div class="room-tab" data-room="bed1-aircon">Bedroom 1</div>
-                    <div class="room-tab" data-room="bed2-aircon">Bedroom 2</div>
-                    <div class="room-tab" data-room="kitchen-aircon">Kitchen</div>
-                    <div class="room-tab" data-room="bath-aircon">Bathroom</div>
-                    <div class="room-tab" data-room="garage-aircon">Garage</div>
-                    <div class="room-tab" data-room="balcony-aircon">Balcony</div>
-                </div>
-
-                <!-- Aircon Controls Container -->
-                <div class="aircon-controls-container">
-                    <!-- Living Room AC -->
-                    <div class="aircon-controls" id="living-aircon" style="display:flex;">
-                        <div class="device-item">
-                            <div class="device-circle ac-control" data-device-id="living-ac-1">
-                                <i class="fas fa-snowflake device-icon"></i>
-                            </div>
-                            <p class="device-label">Air Conditioner</p>
-                            <div class="ac-settings">
-                                <button class="ac-power-btn">OFF</button>
-                                <label>Temperature: <span class="ac-temp-value">24°C</span></label>
-                                <input type="range" min="16" max="30" value="24" class="ac-temp-slider">
-                                <label>Mode:</label>
-                                <select class="ac-mode-select">
-                                    <option value="cool">Cool</option>
-                                    <option value="heat">Heat</option>
-                                    <option value="fan">Fan</option>
-                                    <option value="dry">Dry</option>
-                                </select>
                             </div>
                         </div>
                     </div>
@@ -1056,12 +847,11 @@
                                 </select>
                             </div>
                         </div>
->>>>>>> 292163d74053dc216bede6e49c2fc3c1520707b4
                     </div>
 
-                </div> <!-- end aircon-controls-container -->
-            </div> <!-- end aircon page -->
-<<<<<<< HEAD
+                </div>
+            </div>
+
             <!-- SENSOR MONITORING PAGE -->
             <div class="page" id="sensor" style="display: none;">
                 <h2 class="page-title">Sensor Monitoring</h2>
@@ -1149,6 +939,7 @@
                     </div>
                 </div>
             </div>
+
             <!-- CURTAIN CONTROL PAGE -->
             <div class="page" id="curtain" style="display: none;">
                 <h2 class="page-title">Curtain Control</h2>
@@ -1216,8 +1007,8 @@
                         </div>
                     </div>
 
-                </div> <!-- END curtain-container -->
-            </div> <!-- END curtain page -->
+                </div>
+            </div>
 
             <!-- POWER MANAGEMENT CONTROL PAGE -->
             <div class="page" id="power" style="display: none;">
@@ -1230,6 +1021,7 @@
                     <div class="room-tab" data-room="bed2-power">Bedroom 2</div>
                     <div class="room-tab" data-room="kitchen-power">Kitchen</div>
                     <div class="room-tab" data-room="garage-power">Garage</div>
+                    <div class="room-tab" data-room="balcony-power">Balcony</div>
                 </div>
 
                 <!-- Power Container -->
@@ -1289,21 +1081,1032 @@
                             <p class="power-value status-off">Low Usage</p>
                         </div>
                     </div>
+
                     <!-- Balcony -->
                     <div class="power-panel" id="balcony-power">
                         <div class="power-card">
-                            h3>Status</h3>
+                            <h3>Status</h3>
                             <p class="power-value status-off">Low Usage</p>
                         </div>
+                    </div>
 
-                    </div> <!-- END power-container -->
-                </div> <!-- END power page -->
-        </div> <!-- end dashboard-container -->
-=======
-        </div> <!-- end main-content -->
+                </div>
+            </div>
 
->>>>>>> 292163d74053dc216bede6e49c2fc3c1520707b4
-        <script src="script.js"></script>
-        </div>
+            <!-- ENERGY PAGE -->
+            <div class="page" id="energy" style="display: none;">
+                <h2 class="page-title">Energy and Power</h2>
+                <div class="bottom-grid">
+                    <div class="energy-panel">
+                        <h3>Energy Usage</h3>
+                        <p class="energy-today">Today's Consumption: <strong>1.8 kWh</strong></p>
+                        <div class="energy-graph"><canvas id="energyChartPage"></canvas></div>
+                        <div class="energy-info"><p>Monthly Totals</p><p>Appliance Breakdown</p></div>
+                    </div>
+
+                    <div class="settings-panel">
+                        <h3>Energy Notes</h3>
+                        <ul>
+                            <li>Monitor daily device usage</li>
+                            <li>Track monthly totals</li>
+                            <li>Review appliance breakdown</li>
+                            <li>Check peak hour consumption</li>
+                            <li>Apply smart energy rules</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SETTINGS PAGE -->
+            <div class="page" id="settings" style="display: none;">
+                <div class="settings-page-shell">
+
+                   
+
+                    <!-- MAIN SETTINGS CONTENT -->
+                    <div class="settings-main-panel">
+
+                        <!-- PAGE TITLE -->
+                        <div class="settings-header">
+                            <h1><i class="fa-solid fa-gear"></i> Settings</h1>
+                        </div>
+
+                        <!-- TOP CONTENT -->
+                        <div class="settings-top-grid">
+
+                            <!-- LEFT PANEL -->
+                            <div class="settings-left-panel">
+                                <div class="settings-glass-card settings-tree-card">
+                                    <div class="settings-section-block">
+                                        <div class="tree-section-title">
+                                            <i class="fa-solid fa-chevron-down"></i>
+                                            <i class="fa-solid fa-palette"></i>
+                                            <span>Appearance</span>
+                                        </div>
+
+                                        <div class="tree-subsection">
+                                            <div class="tree-subsection-title">
+                                                <i class="fa-solid fa-chevron-down"></i>
+                                                <i class="fa-solid fa-bars"></i>
+                                                <span>Side Menu</span>
+                                            </div>
+
+                                            <div class="appearance-row">
+                                                <div class="appearance-left">
+                                                    <span class="color-dot navy"></span>
+                                                    <span>Sidebar Text</span>
+                                                </div>
+                                                <div class="appearance-right">
+                                                    <span>OPACITY</span>
+                                                    <input type="range" min="0" max="100" value="100">
+                                                    <strong>100%</strong>
+                                                </div>
+                                            </div>
+
+                                            <div class="appearance-row">
+                                                <div class="appearance-left">
+                                                    <span class="color-dot white"></span>
+                                                    <span>Hover Text</span>
+                                                </div>
+                                                <div class="appearance-right">
+                                                    <span>OPACITY</span>
+                                                    <input type="range" min="0" max="100" value="100">
+                                                    <strong>100%</strong>
+                                                </div>
+                                            </div>
+
+                                            <div class="appearance-row">
+                                                <div class="appearance-left">
+                                                    <span class="color-dot white"></span>
+                                                    <span>Active Button Text</span>
+                                                </div>
+                                                <div class="appearance-right">
+                                                    <span>OPACITY</span>
+                                                    <input type="range" min="0" max="100" value="100">
+                                                    <strong>100%</strong>
+                                                </div>
+                                            </div>
+
+                                            <div class="appearance-row">
+                                                <div class="appearance-left">
+                                                    <span class="color-dot dark"></span>
+                                                    <span>Active Button Background</span>
+                                                </div>
+                                                <div class="appearance-right">
+                                                    <span>OPACITY</span>
+                                                    <input type="range" min="0" max="100" value="0">
+                                                    <strong>0%</strong>
+                                                </div>
+                                            </div>
+
+                                            <div class="appearance-row">
+                                                <div class="appearance-left">
+                                                    <span class="color-dot gray"></span>
+                                                    <span>Hover Button Background</span>
+                                                </div>
+                                                <div class="appearance-right">
+                                                    <span>OPACITY</span>
+                                                    <input type="range" min="0" max="100" value="100">
+                                                    <strong>100%</strong>
+                                                </div>
+                                            </div>
+
+                                            <div class="appearance-row">
+                                                <div class="appearance-left">
+                                                    <span class="color-dot white"></span>
+                                                    <span>Sidebar Background</span>
+                                                </div>
+                                                <div class="appearance-right">
+                                                    <span>OPACITY</span>
+                                                    <input type="range" min="0" max="100" value="81">
+                                                    <strong>81%</strong>
+                                                </div>
+                                            </div>
+
+                                            <div class="appearance-row">
+                                                <div class="appearance-left">
+                                                    <span>Background Blur</span>
+                                                </div>
+                                                <div class="appearance-right">
+                                                    <input type="range" min="0" max="30" value="18">
+                                                    <strong>18px</strong>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="tree-subsection">
+                                            <div class="tree-subsection-title">
+                                                <i class="fa-solid fa-chevron-down"></i>
+                                                <i class="fa-regular fa-window-maximize"></i>
+                                                <span>Content Area</span>
+                                            </div>
+
+                                            <div class="appearance-row">
+                                                <div class="appearance-left">
+                                                    <span class="color-dot black"></span>
+                                                    <span>Container Background</span>
+                                                </div>
+                                                <div class="appearance-right">
+                                                    <span>OPACITY</span>
+                                                    <input type="range" min="0" max="100" value="59">
+                                                    <strong>59%</strong>
+                                                </div>
+                                            </div>
+
+                                            <div class="appearance-row">
+                                                <div class="appearance-left">
+                                                    <span class="color-dot white"></span>
+                                                    <span>Holder Background</span>
+                                                </div>
+                                                <div class="appearance-right">
+                                                    <span>OPACITY</span>
+                                                    <input type="range" min="0" max="100" value="14">
+                                                    <strong>14%</strong>
+                                                </div>
+                                            </div>
+
+                                            <div class="appearance-row">
+                                                <div class="appearance-left">
+                                                    <span class="color-dot white"></span>
+                                                    <span>Holder Items Background</span>
+                                                </div>
+                                                <div class="appearance-right">
+                                                    <span>OPACITY</span>
+                                                    <input type="range" min="0" max="100" value="0">
+                                                    <strong>0%</strong>
+                                                </div>
+                                            </div>
+
+                                            <div class="appearance-row">
+                                                <div class="appearance-left">
+                                                    <span class="color-dot white"></span>
+                                                    <span>Text & Icons</span>
+                                                </div>
+                                                <div class="appearance-right">
+                                                    <span>OPACITY</span>
+                                                    <input type="range" min="0" max="100" value="100">
+                                                    <strong>100%</strong>
+                                                </div>
+                                            </div>
+
+                                            <div class="appearance-row">
+                                                <div class="appearance-left">
+                                                    <span class="color-dot white"></span>
+                                                    <span>Secondary Text</span>
+                                                </div>
+                                                <div class="appearance-right">
+                                                    <span>OPACITY</span>
+                                                    <input type="range" min="0" max="100" value="100">
+                                                    <strong>100%</strong>
+                                                </div>
+                                            </div>
+
+                                            <div class="appearance-row">
+                                                <div class="appearance-left">
+                                                    <span class="color-dot white"></span>
+                                                    <span>Elements Color</span>
+                                                </div>
+                                                <div class="appearance-right">
+                                                    <span>OPACITY</span>
+                                                    <input type="range" min="0" max="100" value="100">
+                                                    <strong>100%</strong>
+                                                </div>
+                                            </div>
+
+                                            <div class="appearance-row">
+                                                <div class="appearance-left">
+                                                    <span class="color-dot blue"></span>
+                                                    <span>Button Active Color</span>
+                                                </div>
+                                                <div class="appearance-right">
+                                                    <span>OPACITY</span>
+                                                    <input type="range" min="0" max="100" value="100">
+                                                    <strong>100%</strong>
+                                                </div>
+                                            </div>
+
+                                            <div class="appearance-row">
+                                                <div class="appearance-left">
+                                                    <span class="color-dot white"></span>
+                                                    <span>Button Hover Color</span>
+                                                </div>
+                                                <div class="appearance-right">
+                                                    <span>OPACITY</span>
+                                                    <input type="range" min="0" max="100" value="100">
+                                                    <strong>100%</strong>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="tree-subsection">
+                                            <div class="tree-subsection-title">
+                                                <i class="fa-solid fa-chevron-down"></i>
+                                                <i class="fa-solid fa-right-to-bracket"></i>
+                                                <span>Login Area</span>
+                                            </div>
+
+                                            <div class="appearance-row">
+                                                <div class="appearance-left">
+                                                    <span class="color-dot white"></span>
+                                                    <span>Card Background</span>
+                                                </div>
+                                                <div class="appearance-right">
+                                                    <span>OPACITY</span>
+                                                    <input type="range" min="0" max="100" value="40">
+                                                    <strong>40%</strong>
+                                                </div>
+                                            </div>
+
+                                            <div class="appearance-row">
+                                                <div class="appearance-left">
+                                                    <span class="color-dot white"></span>
+                                                    <span>Form Field Background</span>
+                                                </div>
+                                                <div class="appearance-right">
+                                                    <span>OPACITY</span>
+                                                    <input type="range" min="0" max="100" value="30">
+                                                    <strong>30%</strong>
+                                                </div>
+                                            </div>
+
+                                            <div class="appearance-row">
+                                                <div class="appearance-left">
+                                                    <span class="color-dot navy"></span>
+                                                    <span>Button</span>
+                                                </div>
+                                                <div class="appearance-right">
+                                                    <span>OPACITY</span>
+                                                    <input type="range" min="0" max="100" value="100">
+                                                    <strong>100%</strong>
+                                                </div>
+                                            </div>
+
+                                            <div class="appearance-row">
+                                                <div class="appearance-left">
+                                                    <span class="color-dot white"></span>
+                                                    <span>Border</span>
+                                                </div>
+                                                <div class="appearance-right">
+                                                    <span>OPACITY</span>
+                                                    <input type="range" min="0" max="100" value="15">
+                                                    <strong>15%</strong>
+                                                </div>
+                                            </div>
+
+                                            <div class="appearance-row">
+                                                <div class="appearance-left">
+                                                    <span>Background Blur</span>
+                                                </div>
+                                                <div class="appearance-right">
+                                                    <input type="range" min="0" max="30" value="20">
+                                                    <strong>20px</strong>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="image-preview-block">
+                                        <div class="preview-dot-grid">
+                                            <button class="preview-dot"></button>
+                                            <button class="preview-dot"></button>
+                                            <button class="preview-dot"></button>
+                                            <button class="preview-dot"></button>
+                                            <button class="preview-dot active"></button>
+                                            <button class="preview-dot"></button>
+                                            <button class="preview-dot"></button>
+                                            <button class="preview-dot"></button>
+                                            <button class="preview-dot"></button>
+                                        </div>
+
+                                        <div class="preview-image-card">
+                                            <img src="https://placehold.co/260x360/png?text=Preview+Image" alt="Preview">
+                                        </div>
+                                    </div>
+
+                                    <div class="settings-section-block management-block">
+                                        <div class="tree-section-title">
+                                            <i class="fa-solid fa-chevron-down"></i>
+                                            <i class="fa-solid fa-briefcase"></i>
+                                            <span>Management</span>
+                                        </div>
+
+                                        <div class="tree-subsection">
+                                            <div class="tree-subsection-title">
+                                                <i class="fa-solid fa-chevron-down"></i>
+                                                <i class="fa-solid fa-users"></i>
+                                                <span>User Management</span>
+                                            </div>
+
+                                            <div class="management-actions">
+                                                <button class="settings-blue-btn"><i class="fa-solid fa-user-plus"></i> Add User</button>
+                                            </div>
+
+                                            <div class="settings-user-table-wrap">
+                                                <table class="settings-user-table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>ID</th>
+                                                            <th>Username</th>
+                                                            <th>Permission Group</th>
+                                                            <th>Actions</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>1</td>
+                                                            <td>admin</td>
+                                                            <td><span class="role-badge admin">Administrator</span></td>
+                                                            <td><button class="delete-icon-btn"><i class="fa-solid fa-trash"></i></button></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>2</td>
+                                                            <td>user</td>
+                                                            <td><span class="role-badge user">StandardUser</span></td>
+                                                            <td><button class="delete-icon-btn"><i class="fa-solid fa-trash"></i></button></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                        <div class="tree-subsection">
+                                            <div class="tree-subsection-title">
+                                                <i class="fa-solid fa-chevron-down"></i>
+                                                <i class="fa-solid fa-user-gear"></i>
+                                                <span>Permission Groups</span>
+                                            </div>
+                                            <p class="permission-note">Configure permission groups here.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- RIGHT PANEL -->
+                            <div class="settings-right-panel">
+                                <div class="settings-glass-card settings-assets-card">
+
+                                    <div class="settings-card-header">
+                                        <h3>Asset Library</h3>
+                                        <div class="settings-card-actions">
+                                            <button class="settings-blue-btn"><i class="fa-solid fa-upload"></i> Upload</button>
+                                            <button class="settings-red-btn"><i class="fa-solid fa-trash"></i> Bulk delete</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="settings-assets-layout">
+
+                                        <!-- CATEGORY LIST -->
+                                        <div class="asset-category-panel">
+                                            <div class="asset-category-item">Unassigned</div>
+                                            <div class="asset-category-item">Lights</div>
+                                            <div class="asset-category-item active">Thermostat Assets</div>
+                                        </div>
+
+                                        <!-- ASSET GRID -->
+                                        <div class="asset-grid-panel">
+                                            <div class="asset-grid">
+
+                                                <div class="asset-item-card">
+                                                    <input type="checkbox">
+                                                    <div class="asset-icon thermo-icon">A</div>
+                                                    <h4>AC Auto Mode</h4>
+                                                    <p>ICON • THERMOSTAT ASSETS</p>
+                                                    <small>9519109508</small>
+                                                    <div class="asset-item-actions">
+                                                        <button>Copy ID</button>
+                                                        <button>Copy Link</button>
+                                                    </div>
+                                                </div>
+
+                                                <div class="asset-item-card">
+                                                    <input type="checkbox">
+                                                    <div class="asset-icon snow-icon"><i class="fa-solid fa-snowflake"></i></div>
+                                                    <h4>AC Cool Mode</h4>
+                                                    <p>ICON • THERMOSTAT ASSETS</p>
+                                                    <small>1F7B5F001</small>
+                                                    <div class="asset-item-actions">
+                                                        <button>Copy ID</button>
+                                                        <button>Copy Link</button>
+                                                    </div>
+                                                </div>
+
+                                                <div class="asset-item-card">
+                                                    <input type="checkbox">
+                                                    <div class="asset-icon water-icon"><i class="fa-solid fa-droplet"></i></div>
+                                                    <h4>AC Dry Mode</h4>
+                                                    <p>ICON • THERMOSTAT ASSETS</p>
+                                                    <small>3359639174</small>
+                                                    <div class="asset-item-actions">
+                                                        <button>Copy ID</button>
+                                                        <button>Copy Link</button>
+                                                    </div>
+                                                </div>
+
+                                                <div class="asset-item-card">
+                                                    <input type="checkbox">
+                                                    <div class="asset-icon fan-icon-asset"><i class="fa-solid fa-fan"></i></div>
+                                                    <h4>AC Fan Mode</h4>
+                                                    <p>ICON • THERMOSTAT ASSETS</p>
+                                                    <small>F7BA343778</small>
+                                                    <div class="asset-item-actions">
+                                                        <button>Copy ID</button>
+                                                        <button>Copy Link</button>
+                                                    </div>
+                                                </div>
+
+                                                <div class="asset-item-card">
+                                                    <input type="checkbox">
+                                                    <div class="asset-icon flame-icon"><i class="fa-solid fa-fire"></i></div>
+                                                    <h4>AC Heat Mode</h4>
+                                                    <p>ICON • THERMOSTAT ASSETS</p>
+                                                    <small>AC345CF280</small>
+                                                    <div class="asset-item-actions">
+                                                        <button>Copy ID</button>
+                                                        <button>Copy Link</button>
+                                                    </div>
+                                                </div>
+
+                                                <div class="asset-item-card">
+                                                    <input type="checkbox">
+                                                    <div class="asset-icon fan-icon-asset"><i class="fa-solid fa-fan"></i></div>
+                                                    <h4>Fan Auto</h4>
+                                                    <p>ICON • THERMOSTAT ASSETS</p>
+                                                    <small>A6FE79BEB9</small>
+                                                    <div class="asset-item-actions">
+                                                        <button>Copy ID</button>
+                                                        <button>Copy Link</button>
+                                                    </div>
+                                                </div>
+
+                                                <div class="asset-item-card">
+                                                    <input type="checkbox">
+                                                    <div class="asset-icon fan-icon-asset small-badge">1</div>
+                                                    <h4>Fan Speed 1</h4>
+                                                    <p>ICON • THERMOSTAT ASSETS</p>
+                                                    <small>E6A1D957BF</small>
+                                                    <div class="asset-item-actions">
+                                                        <button>Copy ID</button>
+                                                        <button>Copy Link</button>
+                                                    </div>
+                                                </div>
+
+                                                <div class="asset-item-card">
+                                                    <input type="checkbox">
+                                                    <div class="asset-icon fan-icon-asset small-badge">2</div>
+                                                    <h4>Fan Speed 2</h4>
+                                                    <p>ICON • THERMOSTAT ASSETS</p>
+                                                    <small>32DDED226</small>
+                                                    <div class="asset-item-actions">
+                                                        <button>Copy ID</button>
+                                                        <button>Copy Link</button>
+                                                    </div>
+                                                </div>
+
+                                                <div class="asset-item-card">
+                                                    <input type="checkbox">
+                                                    <div class="asset-icon fan-icon-asset small-badge">3</div>
+                                                    <h4>Fan Speed 3</h4>
+                                                    <p>ICON • THERMOSTAT ASSETS</p>
+                                                    <small>F2712DEB5</small>
+                                                    <div class="asset-item-actions">
+                                                        <button>Copy ID</button>
+                                                        <button>Copy Link</button>
+                                                    </div>
+                                                </div>
+
+                                                <div class="asset-item-card">
+                                                    <input type="checkbox">
+                                                    <div class="asset-icon fan-icon-asset small-badge">4</div>
+                                                    <h4>Fan Speed 4</h4>
+                                                    <p>ICON • THERMOSTAT ASSETS</p>
+                                                    <small>I7FA01F482</small>
+                                                    <div class="asset-item-actions">
+                                                        <button>Copy ID</button>
+                                                        <button>Copy Link</button>
+                                                    </div>
+                                                </div>
+
+                                                <div class="asset-item-card">
+                                                    <input type="checkbox">
+                                                    <div class="asset-icon fan-icon-asset small-badge">5</div>
+                                                    <h4>Fan Speed 5</h4>
+                                                    <p>ICON • THERMOSTAT ASSETS</p>
+                                                    <small>FI98A4780C</small>
+                                                    <div class="asset-item-actions">
+                                                        <button>Copy ID</button>
+                                                        <button>Copy Link</button>
+                                                    </div>
+                                                </div>
+
+                                                <div class="asset-item-card">
+                                                    <input type="checkbox">
+                                                    <div class="asset-icon power-icon"><i class="fa-solid fa-power-off"></i></div>
+                                                    <h4>General Off</h4>
+                                                    <p>ICON • THERMOSTAT ASSETS</p>
+                                                    <small>7E48C985CB</small>
+                                                    <div class="asset-item-actions">
+                                                        <button>Copy ID</button>
+                                                        <button>Copy Link</button>
+                                                    </div>
+                                                </div>
+
+                                                <div class="asset-item-card">
+                                                    <input type="checkbox">
+                                                    <div class="asset-icon louver-icon"><i class="fa-solid fa-wind"></i></div>
+                                                    <h4>Louver 3</h4>
+                                                    <p>ICON • THERMOSTAT ASSETS</p>
+                                                    <small>30BE35930B</small>
+                                                    <div class="asset-item-actions">
+                                                        <button>Copy ID</button>
+                                                        <button>Copy Link</button>
+                                                    </div>
+                                                </div>
+
+                                                <div class="asset-item-card">
+                                                    <input type="checkbox">
+                                                    <div class="asset-icon louver-icon"><i class="fa-solid fa-wind"></i></div>
+                                                    <h4>Louver 4</h4>
+                                                    <p>ICON • THERMOSTAT ASSETS</p>
+                                                    <small>A349DF1CF</small>
+                                                    <div class="asset-item-actions">
+                                                        <button>Copy ID</button>
+                                                        <button>Copy Link</button>
+                                                    </div>
+                                                </div>
+
+                                                <div class="asset-item-card">
+                                                    <input type="checkbox">
+                                                    <div class="asset-icon louver-icon"><i class="fa-solid fa-wind"></i></div>
+                                                    <h4>Louver Auto</h4>
+                                                    <p>ICON • THERMOSTAT ASSETS</p>
+                                                    <small>BD5B72A9A2</small>
+                                                    <div class="asset-item-actions">
+                                                        <button>Copy ID</button>
+                                                        <button>Copy Link</button>
+                                                    </div>
+                                                </div>
+
+                                                <div class="asset-item-card">
+                                                    <input type="checkbox">
+                                                    <div class="asset-icon louver-icon disabled"><i class="fa-solid fa-wind"></i></div>
+                                                    <h4>Louver Disable</h4>
+                                                    <p>ICON • THERMOSTAT ASSETS</p>
+                                                    <small>EEAA6A6BCE</small>
+                                                    <div class="asset-item-actions">
+                                                        <button>Copy ID</button>
+                                                        <button>Copy Link</button>
+                                                    </div>
+                                                </div>
+
+                                                <div class="asset-item-card">
+                                                    <input type="checkbox">
+                                                    <div class="asset-icon thermo-init"><i class="fa-solid fa-temperature-three-quarters"></i></div>
+                                                    <h4>Thermo Init</h4>
+                                                    <p>ICON • THERMOSTAT ASSETS</p>
+                                                    <small>1EIA215E99</small>
+                                                    <div class="asset-item-actions">
+                                                        <button>Copy ID</button>
+                                                        <button>Copy Link</button>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- GRAPHICAL VIEW -->
+                                    <div class="graphical-view-section">
+                                        <div class="settings-card-header graphical-header">
+                                            <div>
+                                                <h3><i class="fa-regular fa-image"></i> Graphical View</h3>
+                                                <p>Graphical Assets</p>
+                                            </div>
+                                            <div class="settings-card-actions">
+                                                <button class="settings-blue-btn"><i class="fa-solid fa-plus"></i> New</button>
+                                                <button class="settings-red-btn"><i class="fa-solid fa-trash"></i> Delete</button>
+                                            </div>
+                                        </div>
+
+                                        <div class="graphical-controls-grid">
+                                            <div class="graphical-column">
+                                                <h4>SWITCHING CONTROL</h4>
+                                                <div class="graphical-control-card">
+                                                    <div class="graphic-thumb"></div>
+                                                    <div>
+                                                        <strong>Fan Control [Switching]</strong>
+                                                        <p>GraphicalAssets</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="graphical-column">
+                                                <h4>EXTENDED CONTROL</h4>
+                                                <div class="graphical-control-card dark">
+                                                    <div class="graphic-thumb dark"></div>
+                                                    <div>
+                                                        <strong>Fan Control [Extended]</strong>
+                                                        <p>GraphicalAssets</p>
+                                                    </div>
+                                                </div>
+
+                                                <div class="graphical-control-card">
+                                                    <div class="graphic-thumb"></div>
+                                                    <div>
+                                                        <strong>Static Light switch [Extended]</strong>
+                                                        <p>GraphicalAssets</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="graphics-code-grid">
+                                            <div class="graphics-panel">
+                                                <div class="graphics-panel-title"><i class="fa-regular fa-window-maximize"></i> GRAPHICS</div>
+                                                <div class="graphics-canvas"></div>
+                                            </div>
+
+                                            <div class="code-panel">
+                                                <div class="graphics-panel-title code-title-row">
+                                                    <span><i class="fa-solid fa-code"></i> CODE PANE</span>
+                                                    <div class="code-actions">
+                                                        <button class="code-save-btn"><i class="fa-solid fa-floppy-disk"></i></button>
+                                                        <button class="code-run-btn"><i class="fa-solid fa-play"></i></button>
+                                                    </div>
+                                                </div>
+
+                                                <div class="code-tabs">
+                                                    <span class="active">HTML</span>
+                                                    <span>JS</span>
+                                                    <span>CSS</span>
+                                                </div>
+
+                                                <div class="code-editor-area">
+                                                    <div class="code-line-numbers">1</div>
+                                                    <div class="code-editor-content"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- BUILDING PARTS PAGE -->
+            <div class="page" id="building-parts" style="display: none;">
+                <h2 class="page-title"><i class="fa-solid fa-layer-group"></i> Building Parts</h2>
+
+                <div class="building-parts-layout">
+                    <!-- Left Panel -->
+                    <div class="building-card">
+                        <div class="building-card-header">
+                            <h3><i class="fa-solid fa-layer-group"></i> Building Parts</h3>
+                            <div class="building-actions">
+                                <button class="building-btn primary"><i class="fa-solid fa-plus"></i> Add Building</button>
+                                <button class="building-btn"><i class="fa-solid fa-floppy-disk"></i> Save</button>
+                            </div>
+                        </div>
+
+                        <div class="building-card-body">
+                            <ul class="building-tree">
+                                <li>
+                                    <span class="tree-row">
+                                        <span><i class="fa-solid fa-chevron-right"></i> <i class="fa-regular fa-building"></i> Project</span>
+                                        <span class="tree-type">BUILDING</span>
+                                    </span>
+                                </li>
+
+                                <li>
+                                    <span class="tree-row active">
+                                        <span><i class="fa-solid fa-chevron-down"></i> <i class="fa-regular fa-building"></i> Project Building</span>
+                                        <span class="tree-type">BUILDING</span>
+                                    </span>
+
+                                    <ul>
+                                        <li>
+                                            <span class="tree-row">
+                                                <span><i class="fa-solid fa-chevron-down"></i> <i class="fa-regular fa-folder"></i> Floor 1</span>
+                                                <span class="tree-type">FLOOR</span>
+                                            </span>
+
+                                            <ul>
+                                                <li>
+                                                    <span class="tree-row">
+                                                        <span><i class="fa-solid fa-chevron-right"></i> <i class="fa-regular fa-square"></i> Bedroom 1 Area</span>
+                                                        <span class="tree-type">ZONE</span>
+                                                    </span>
+                                                </li>
+                                                <li>
+                                                    <span class="tree-row">
+                                                        <span><i class="fa-solid fa-chevron-right"></i> <i class="fa-regular fa-square"></i> Master Bedroom Area</span>
+                                                        <span class="tree-type">ZONE</span>
+                                                    </span>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Right Panel -->
+                    <div class="building-card">
+                        <div class="building-card-header">
+                            <h3><i class="fa-solid fa-layer-group"></i> Building Parts View</h3>
+                        </div>
+
+                        <div class="building-toolbar">
+                            <div class="building-field">
+                                <label>Building</label>
+                                <select>
+                                    <option>Project Building</option>
+                                </select>
+                            </div>
+
+                            <div class="building-field">
+                                <label>Floor</label>
+                                <select>
+                                    <option>Floor 1</option>
+                                </select>
+                            </div>
+
+                            <div class="building-field">
+                                <label>Define</label>
+                                <select>
+                                    <option>Area</option>
+                                    <option>Zone</option>
+                                    <option>Room</option>
+                                </select>
+                            </div>
+
+                            <button class="building-btn dark"><i class="fa-solid fa-upload"></i> Upload Floor Plan</button>
+
+                            <div class="scale-wrap">
+                                <span>Scale</span>
+                                <input type="range" min="1" max="100" value="98">
+                                <strong>98%</strong>
+                            </div>
+                        </div>
+
+                        <div class="floorplan-wrap">
+                            <div class="floorplan-box">
+                                <img src="https://placehold.co/420x420/png?text=Floor+Plan" alt="Floor Plan">
+                            </div>
+                            <p class="floorplan-note">
+                                Drag on the floor plan to define Area, Zone, and Room regions for the selected building/floor.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CONTROLS PAGE -->
+            <div class="page" id="controls-page" style="display: none;">
+                <div class="controls-page-header">
+                    <div class="controls-title-wrap">
+                        <h2 class="page-title controls-main-title">
+                            <i class="fa-solid fa-sliders"></i> Controls
+                        </h2>
+                    </div>
+
+                    <div class="controls-top-actions">
+                        <button class="controls-icon-btn" title="Add Control" id="openAddControlModal">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                        <button class="controls-icon-btn" title="Tile View">
+                            <i class="fa-regular fa-square"></i>
+                        </button>
+                        <button class="controls-icon-btn" title="Grid View">
+                            <i class="fa-regular fa-clone"></i>
+                        </button>
+                        <button class="controls-icon-btn" title="Layout View">
+                            <i class="fa-regular fa-window-restore"></i>
+                        </button>
+                        <button class="controls-icon-btn active" title="Monitor View">
+                            <i class="fa-regular fa-message"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="controls-page-body">
+
+                    <!-- Area 1 -->
+                    <div class="control-section-card">
+                        <div class="control-section-breadcrumb">
+                            Project Building &gt; Floor 1 &gt; Bedroom 1 Area
+                        </div>
+                        <div class="control-section-title-row">
+                            <h3>Bedroom 1 Area</h3>
+                            <div class="control-line"></div>
+                        </div>
+                        <div class="control-section-content" id="controlsDropZone"></div>
+                    </div>
+
+                    <!-- Area 2 -->
+                    <div class="control-section-card">
+                        <div class="control-section-breadcrumb">
+                            Project Building &gt; Floor 1 &gt; Bedroom 1 Area &gt; Bedroom 1
+                        </div>
+                        <div class="control-section-title-row">
+                            <h3>Bedroom 1</h3>
+                            <div class="control-line"></div>
+                        </div>
+                        <div class="control-section-content"></div>
+                    </div>
+
+                    <!-- Area 3 -->
+                    <div class="control-section-card">
+                        <div class="control-section-breadcrumb">
+                            Project Building &gt; Floor 1 &gt; Bedroom 1 Area &gt; Bedroom 1 toilet
+                        </div>
+                        <div class="control-section-title-row">
+                            <h3>Bedroom 1 toilet</h3>
+                            <div class="control-line"></div>
+                        </div>
+                        <div class="control-section-content"></div>
+                    </div>
+
+                    <!-- Area 4 -->
+                    <div class="control-section-card">
+                        <div class="control-section-breadcrumb">
+                            Project Building &gt; Floor 1 &gt; Master Bedroom Area
+                        </div>
+                        <div class="control-section-title-row">
+                            <h3>Master Bedroom Area</h3>
+                            <div class="control-line"></div>
+                        </div>
+                        <div class="control-section-content"></div>
+                    </div>
+
+                    <!-- Area 5 -->
+                    <div class="control-section-card">
+                        <div class="control-section-breadcrumb">
+                            Project Building &gt; Floor 1 &gt; Master Bedroom Area &gt; Master Bedroom Bathroom
+                        </div>
+                        <div class="control-section-title-row">
+                            <h3>Master Bedroom Bathroom</h3>
+                            <div class="control-line"></div>
+                        </div>
+                        <div class="control-section-content"></div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- ADD CONTROL MODAL -->
+            <div id="addControlModal" class="control-modal">
+                <div class="control-modal-content">
+                    <div class="control-modal-header">
+                        <h3>Add Control</h3>
+                        <button type="button" class="control-modal-close" id="closeAddControlModal">&times;</button>
+                    </div>
+
+                    <div class="control-modal-body">
+
+                        <div class="control-form-group">
+                            <label>Select Graphical Asset</label>
+                            <div class="graphical-asset-grid">
+                                <div class="graphical-asset-card active" data-asset="toggle-light">
+                                    <div class="graphical-asset-icon">
+                                        <i class="fa-solid fa-lightbulb"></i>
+                                    </div>
+                                    <span>Toggle Lig...</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="control-form-group">
+                            <label for="controlDeviceSelect">Select Device</label>
+                            <select id="controlDeviceSelect">
+                                <option>Master Bedroom downlights (Dimming_Lights)</option>
+                                <option>Bedroom 1 main light (Dimming_Lights)</option>
+                                <option>Bedroom 1 fan (Fan_Control)</option>
+                                <option>Bathroom exhaust fan (Ventilation)</option>
+                            </select>
+                        </div>
+
+                        <div class="control-form-group">
+                            <label for="controlBooleanColumn">Select Boolean Column</label>
+                            <select id="controlBooleanColumn">
+                                <option>on_off_command</option>
+                                <option>power_status</option>
+                                <option>enable_control</option>
+                            </select>
+                        </div>
+
+                        <div class="control-form-group">
+                            <label for="controlButtonLabel">Button Label</label>
+                            <input type="text" id="controlButtonLabel" value="Master Bedroom downlights">
+                        </div>
+
+                    </div>
+
+                    <div class="control-modal-footer">
+                        <button type="button" class="control-footer-btn cancel-btn" id="cancelAddControlModal">Cancel</button>
+                        <button type="button" class="control-footer-btn add-btn" id="confirmAddControlModal">Add</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- READINGS PAGE -->
+            <div class="page" id="readings-page" style="display: none;">
+                <div class="readings-page-header">
+                    <h2 class="page-title readings-main-title">
+                        <i class="fa-solid fa-wind"></i> Air Quality Readings
+                    </h2>
+                </div>
+
+                <div class="readings-card">
+                    <div class="readings-card-top">
+                        <h3>Air Quality Line Chart</h3>
+
+                        <div class="readings-filter-row">
+                            <div class="readings-field">
+                                <label for="xAxisColumn">X-Axis Column</label>
+                                <select id="xAxisColumn">
+                                    <option>Carbon Monoxide (CO)</option>
+                                    <option>Carbon Dioxide (CO2)</option>
+                                    <option>Humidity</option>
+                                    <option>Total VOCs</option>
+                                    <option>PM10 (Large Dust)</option>
+                                </select>
+                            </div>
+
+                            <div class="readings-field readings-field-wide">
+                                <label for="yAxisColumns">Y-Axis Columns (Multiple)</label>
+                                <select id="yAxisColumns" multiple>
+                                    <option>Carbon Monoxide (CO)</option>
+                                    <option selected>Carbon Dioxide (CO2)</option>
+                                    <option>Humidity</option>
+                                    <option>Total VOCs</option>
+                                    <option>PM10 (Large Dust)</option>
+                                </select>
+                                <small>Hold Ctrl/Cmd to select multiple</small>
+                            </div>
+
+                            <div class="readings-action">
+                                <button id="updateReadingsChartBtn" class="readings-update-btn">Update Chart</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="readings-chart-panel">
+                        <div class="readings-chart-title">CO2 VS CO</div>
+                        <div class="readings-chart-wrap">
+                            <canvas id="airQualityChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div> <!-- closes .main-content -->
+    </div> <!-- closes .dashboard-container -->
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </body>
 </html>
